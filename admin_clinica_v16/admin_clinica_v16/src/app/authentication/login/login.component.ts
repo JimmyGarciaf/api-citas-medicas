@@ -13,13 +13,13 @@ export class LoginComponent implements OnInit {
   public passwordClass = false;
 
   form = new FormGroup({
-    email: new FormControl('admin@dreamguys.in', [
+    email: new FormControl('admin@mcc.hn', [
       Validators.required,
       Validators.email,
     ]),
-    password: new FormControl('123456', [Validators.required]),
+    password: new FormControl('clinica1234', [Validators.required]),
   });
-
+ 
   get f() {
     return this.form.controls;
   }
