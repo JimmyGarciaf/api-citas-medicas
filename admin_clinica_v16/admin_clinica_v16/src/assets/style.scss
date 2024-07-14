@@ -1876,7 +1876,7 @@ table.table {
     a {
       color: $color_6;
       display: inline-block;
-      float: right;
+      //float: right;
       padding: 0;
     }
     a.btn {
@@ -2488,7 +2488,7 @@ ul.chat-user-total {
     > .item {
       position: relative;
       display: inline-block;
-      float: left;
+      //float: left;
       width: 25%;
       &:before {
         display: block;
@@ -9567,7 +9567,7 @@ blockquote {
   padding: 0;
   > li {
     display: inline-block;
-    float: left;
+    //float: left;
     margin-left: 10px;
     text-align: center;
     &:first-child {
