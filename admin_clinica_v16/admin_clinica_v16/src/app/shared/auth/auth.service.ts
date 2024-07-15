@@ -36,8 +36,16 @@ export class AuthService {
     if(auth && auth.access_token){
       localStorage.setItem("token", auth.access_token);
       localStorage.setItem("user", JSON.stringify(auth.user));
+      localStorage.setItem('authenticated', 'true');
       return true;
     }
     return false;
+  }
+
+  logout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    this.router.navigate([routes.login]);
+    localStorage.removeItem('authenticated');
   }
 }
