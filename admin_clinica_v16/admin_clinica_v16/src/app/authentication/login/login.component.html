@@ -92,6 +92,12 @@
                     </div>
                     <a [routerLink]="routes.forgotPassword">Olvidaste la Contraseña?</a>
                   </div>
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error!</strong> A <a href="javascript:void(0);" class="alert-link">problem</a> has been occurred while submitting your data.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"> </span>
+                    </button>
+                </div>
                   <div class="form-group login-btn">
                     <button
                       [disabled]="form.invalid"
