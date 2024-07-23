@@ -26,6 +26,7 @@ export class HeaderComponent {
       }
     });
     this.user = this.auth.user;
+    console.log(this.user);
   }
 
   openBoxFunc() {
