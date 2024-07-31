@@ -1452,7 +1452,7 @@ table.table {
   }
   .user-img {
     img {
-      width: 40px;
+      width: 30px;
       border-radius: 14px;
     }
   }
@@ -6734,11 +6734,11 @@ a.voice-icon {
   overflow: hidden;
 }
 .sidebar-overlay.opened {
-  display: block;
+  display: inline-block;
 }
 .menu-opened {
   .sidebar-overlay {
-    display: block;
+    display: none;
   }
   .message-view.chat-view {
     width: 100%;

@@ -25,11 +25,6 @@ const routes: Routes = [
           import('./patient/patient.module').then((m) => m.PatientModule),
       },
       {
-        path: 'staff',
-        loadChildren: () =>
-          import('./staff/staff.module').then((m) => m.StaffModule),
-      },
-      {
         path: 'appointments',
         loadChildren: () =>
           import('./appointments/appointments.module').then(
@@ -42,87 +37,6 @@ const routes: Routes = [
           import('./doctor-schedule/doctor-schedule.module').then(
             (m) => m.DoctorScheduleModule
           ),
-      },
-      {
-        path: 'departments',
-        loadChildren: () =>
-          import('./departments/departments.module').then(
-            (m) => m.DepartmentsModule
-          ),
-      },
-      {
-        path: 'accounts',
-        loadChildren: () =>
-          import('./accounts/accounts.module').then((m) => m.AccountsModule),
-      },
-      {
-        path: 'payroll',
-        loadChildren: () =>
-          import('./payroll/payroll.module').then((m) => m.PayrollModule),
-      },
-      {
-        path: 'chat',
-        loadChildren: () =>
-          import('./chat/chat.module').then((m) => m.ChatModule),
-      },
-      {
-        path: 'calls',
-        loadChildren: () =>
-          import('./calls/calls.module').then((m) => m.CallsModule),
-      },
-      {
-        path: 'email',
-        loadChildren: () =>
-          import('./email/email.module').then((m) => m.EmailModule),
-      },
-      {
-        path: 'blogs',
-        loadChildren: () =>
-          import('./blogs/blogs.module').then((m) => m.BlogsModule),
-      },
-      {
-        path: 'assets',
-        loadChildren: () =>
-          import('./assets/assets.module').then((m) => m.AssetsModule),
-      },
-      {
-        path: 'activities',
-        loadChildren: () =>
-          import('./activities/activities.module').then(
-            (m) => m.ActivitiesModule
-          ),
-      },
-      {
-        path: 'reports',
-        loadChildren: () =>
-          import('./reports/reports.module').then((m) => m.ReportsModule),
-      },
-      {
-        path: 'invoice',
-        loadChildren: () =>
-          import('./invoice/invoice.module').then((m) => m.InvoiceModule),
-      },
-      {
-        path: 'settings',
-        loadChildren: () =>
-          import('./settings/settings.module').then((m) => m.SettingsModule),
-      },
-      {
-        path: 'components',
-        loadChildren: () =>
-          import('./components/components.module').then(
-            (m) => m.ComponentsModule
-          ),
-      },
-      {
-        path: 'forms',
-        loadChildren: () =>
-          import('./forms/forms.module').then((m) => m.FormsModule),
-      },
-      {
-        path: 'tables',
-        loadChildren: () =>
-          import('./tables/tables.module').then((m) => m.TablesModule),
       },
       {
         path: 'profile',

@@ -25,13 +25,6 @@ const routes: Routes = [
         ),
     },
     {
-      path: 'doctor-profile',
-      loadChildren: () =>
-        import('./doctor-profile/doctor-profile.module').then(
-          (m) => m.DoctorProfileModule
-        ),
-    },
-    {
       path: 'doctor-setting',
       loadChildren: () =>
         import('./doctor-setting/doctor-setting.module').then(

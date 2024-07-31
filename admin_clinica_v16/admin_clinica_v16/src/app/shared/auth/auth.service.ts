@@ -19,7 +19,6 @@ export class AuthService {
   ) {
 
     this.getLocalStorage();
-    console.log(this.user);
 
   }
 

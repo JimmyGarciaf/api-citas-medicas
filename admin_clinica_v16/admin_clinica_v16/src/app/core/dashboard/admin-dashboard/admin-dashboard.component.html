@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a [routerLink]="routes.adminDashboard">Dashboard </a></li>
+                        <li class="breadcrumb-item"><a [routerLink]="routes.adminDashboard">Dashboard</a></li>
                         <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
                         <li class="breadcrumb-item active">Admin Dashboard</li>
                     </ul>
@@ -19,8 +19,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="morning-user">
-                        <h2>Good Morning, <span>Daniel Bruk</span></h2>
-                        <p>Have a nice day at work</p>
+                        <h2>Buenos Dias, <span>Jimmy Garcia</span></h2>
+                        <p>Que tengas un lindo dia en el trabajo</p>
                     </div>
                 </div>
                 <div class="col-md-6 position-blk">
@@ -38,9 +38,9 @@
                         <img src="assets/img/icons/calendar.svg" alt="">
                     </div>
                     <div class="dash-content dash-count">
-                        <h4>Appointments</h4>
-                        <h2><span class="counter-up" [countUp]="250" [options]="{duration: 10}">250</span></h2>
-                        <p><span class="passive-view"><i class="feather icon-arrow-up-right me-1"></i>40%</span> vs last month</p>
+                        <h4>Citas</h4>
+                        <h2><span class="counter-up" [countUp]="15" [options]="{duration: 10}">250</span></h2>
+                        <p><span class="passive-view"><i class="feather icon-arrow-up-right me-1"></i>40%</span> vs Ultimo Mes</p>
                     </div>
                 </div>
             </div>
@@ -50,13 +50,13 @@
                         <img src="assets/img/icons/profile-add.svg" alt="">
                     </div>
                     <div class="dash-content dash-count">
-                        <h4>New Patients</h4>
-                        <h2><span class="counter-up" [countUp]="140" [options]="{duration: 10}">140</span></h2>
-                        <p><span class="passive-view"><i class="feather icon-arrow-up-right me-1"></i>20%</span> vs last month</p>
+                        <h4>Pacientes Nuevos</h4>
+                        <h2><span class="counter-up" [countUp]="50" [options]="{duration: 10}">20</span></h2>
+                        <p><span class="passive-view"><i class="feather icon-arrow-up-right me-1"></i>20%</span> vs Ultimo Mes</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <!--<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
                 <div class="dash-widget">
                     <div class="dash-boxs comman-flex-center">
                         <img src="assets/img/icons/scissor.svg" alt="">
@@ -77,20 +77,20 @@
                         <h4>Earnings</h4>
                         <h2>$<span class="counter-up" [countUp]="20250" [options]="{duration: 10}"> 20,250</span></h2>
                         <p><span class="passive-view"><i class="feather icon-arrow-up-right me-1"></i>30%</span> vs last month</p>
-                    </div>
+                    </div> 
                 </div>
-            </div>
+            </div>-->
         </div>
         <div class="row">
             <div class="col-12 col-md-12 col-lg-6 col-xl-9">
                 <div class="card">
                     <div class="card-body">
                         <div class="chart-title patient-visit">
-                            <h4>Patient Visit by Gender</h4>
+                            <h4>Visita de pacientes por género</h4>
                             <div >
                                 <ul class="nav chat-user-total">
-                                    <li><i class="fa fa-circle current-users" aria-hidden="true"></i>Male 75%</li>
-                                    <li><i class="fa fa-circle old-users" aria-hidden="true"></i> Female 25%</li>
+                                    <li><i class="fa fa-circle current-users" aria-hidden="true"></i>Hombre 75%</li>
+                                    <li><i class="fa fa-circle old-users" aria-hidden="true"></i> Mujer 25%</li>
                                 </ul>
                             </div>
                             <div class="form-group mb-0">
@@ -121,7 +121,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="chart-title">
-                            <h4>Patient by Department</h4>
+                            <h4>Paciente por Departamento</h4>
                         </div>	
                         <div id="donut-chart-dash" class="chart-user-icon">
                             <apx-chart class="donut-chart-custom"
@@ -141,7 +141,7 @@
             <div class="col-12 col-md-12  col-xl-4">
                 <div class="card top-departments">
                     <div class="card-header">
-                        <h4 class="card-title mb-0">Top Departments</h4>
+                        <h4 class="card-title mb-0">Departamentos</h4>
                     </div>
                     <div class="card-body">
                         <div class="activity-top">
@@ -149,11 +149,11 @@
                                 <img src="assets/img/icons/dep-icon-01.svg" alt="">
                             </div>
                             <div class="departments-list">
-                                <h4>General Physician</h4>
-                                <p>35%</p>
+                                <h4>Médico general</h4>
+                                <p>100%</p>
                             </div>
                         </div>
-                        <div class="activity-top">
+                       <!-- <div class="activity-top">
                             <div class="activity-boxs comman-flex-center">
                                 <img src="assets/img/icons/dep-icon-02.svg" alt="">
                             </div>
@@ -188,14 +188,14 @@
                                 <h4>Opthomology</h4>
                                 <p>20%</p>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
             <div class="col-12 col-md-12  col-xl-8">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title d-inline-block">Upcoming Appointments</h4> <a [routerLink]="routes.appointmentList" class="patient-views float-end">Show all</a>
+                        <h4 class="card-title d-inline-block">Próximas citas</h4> <a [routerLink]="routes.appointmentList" class="patient-views float-end">Mostrar todo</a>
                     </div>
                     <div class="card-body p-0 table-dash">
                         <div class="table-responsive">
@@ -208,10 +208,10 @@
                                             </div>
                                         </th>
                                         <th mat-sort-header="no">No</th>
-                                        <th mat-sort-header="patientName">Patient name</th>
+                                        <th mat-sort-header="patientName">Nombre del paciente</th>
                                         <th mat-sort-header="doctor">Doctor</th>
-                                        <th mat-sort-header="time">Time</th>
-                                        <th mat-sort-header="disease">Disease</th>
+                                        <th mat-sort-header="time">Hora</th>
+                                        <th mat-sort-header="disease">Enfermedad</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -234,8 +234,8 @@
                                             <div class="dropdown dropdown-action">
                                                 <a href="javascript:void(0);" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" [routerLink]="routes.editAppointment"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delete_appointment"><i class="fa fa-trash-alt m-r-5"></i> Delete</a>
+                                                    <a class="dropdown-item" [routerLink]="routes.editAppointment"><i class="fa-solid fa-pen-to-square m-r-5"></i> Editar</a>
+                                                    <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delete_appointment"><i class="fa fa-trash-alt m-r-5"></i> Borrar</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -251,7 +251,7 @@
             <div class="col-12 col-xl-12">
                 <div class="card">
                     <div class="card-header pb-0">
-                        <h4 class="card-title d-inline-block">Recent Patients </h4> <a [routerLink]="routes.patientsList" class="float-end patient-views">show all</a>
+                        <h4 class="card-title d-inline-block">Pacientes recientes </h4> <a [routerLink]="routes.patientsList" class="float-end patient-views">mostrar todo</a>
                     </div>
                     <div class="card-block table-dash">
                         <div class="table-responsive">
@@ -264,11 +264,11 @@
                                             </div>
                                         </th>
                                         <th mat-sort-header="no">No</th>
-                                        <th mat-sort-header="patientName">Patient name</th>
-                                        <th mat-sort-header="age">Age</th>
-                                        <th mat-sort-header="dateOfBirth">Date of Birth</th>
-                                        <th mat-sort-header="diagnosis">Diagnosis</th>
-                                        <th mat-sort-header="triage">Triage</th>
+                                        <th mat-sort-header="patientName">Nombre del paciente</th>
+                                        <th mat-sort-header="age">Años</th>
+                                        <th mat-sort-header="dateOfBirth">Fecha de nacimiento</th>
+                                        <th mat-sort-header="diagnosis">Diagnóstico</th>
+                                        <!--<th mat-sort-header="triage">Triage</th>-->
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -287,13 +287,13 @@
                                         <td>{{data.age}}</td>
                                         <td>{{data.dateOfBirth}}</td>
                                         <td>{{data.diagnosis}}</td>
-                                        <td><button [ngClass]="{'status-green': data.triage === 'Non Urgent', 'status-pink' : data.triage === 'Emergency','status-gray' : data.triage === 'Out Patient','status-orange' : data.triage === 'Urgent' }" class="custom-badge">{{data.triage}}</button></td>
+                                        <!--<td><button [ngClass]="{'status-green': data.triage === 'Non Urgent', 'status-pink' : data.triage === 'Emergency','status-gray' : data.triage === 'Out Patient','status-orange' : data.triage === 'Urgent' }" class="custom-badge">{{data.triage}}</button></td>-->
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">
                                                 <a href="javascript:void(0);" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" [routerLink]="routes.editPatient"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delete_appointment"><i class="fa fa-trash-alt m-r-5"></i> Delete</a>
+                                                    <a class="dropdown-item" [routerLink]="routes.editPatient"><i class="fa-solid fa-pen-to-square m-r-5"></i> Editar</a>
+                                                    <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delete_appointment"><i class="fa fa-trash-alt m-r-5"></i> Borrar</a>
                                                 </div>
                                             </div>
                                         </td>

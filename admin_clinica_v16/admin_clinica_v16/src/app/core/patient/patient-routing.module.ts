@@ -27,13 +27,6 @@ const routes: Routes = [
         ),
     },
     {
-      path: 'patient-profile',
-      loadChildren: () =>
-        import('./patient-profile/patient-profile.module').then(
-          (m) => m.PatientProfileModule
-        ),
-    },
-    {
       path: 'patient-setting',
       loadChildren: () =>
         import('./patient-setting/patient-setting.module').then(

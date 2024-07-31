@@ -25,8 +25,8 @@ export class HeaderComponent {
         this.miniSidebar = false;
       }
     });
-    this.user = this.auth.user;
-    console.log(this.user);
+    //this.user = this.auth.user;
+    //console.log(this.user);
   }
 
   openBoxFunc() {
