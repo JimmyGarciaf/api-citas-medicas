@@ -100,6 +100,7 @@ export interface invoicerecurring {
   img: string;
 }
 export interface doctorlist {
+  id: string;
   name: string;
   department: string;
   specialization: string;
@@ -202,6 +203,7 @@ export interface staffList {
   img: string;
 }
 export interface patientsList {
+  id: string;
   name: string;
   department: string;
   specialization: string;

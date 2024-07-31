@@ -24,13 +24,6 @@ const routes: Routes = [
           (m) => m.EditDoctorModule
         ),
     },
-    {
-      path: 'doctor-setting',
-      loadChildren: () =>
-        import('./doctor-setting/doctor-setting.module').then(
-          (m) => m.DoctorSettingModule
-        ),
-    },
   ]
 }
 ];

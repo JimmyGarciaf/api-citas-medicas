@@ -215,103 +215,103 @@ export class DataService {
           ],
         },
         {
-          menuValue: 'Doctors',
+          menuValue: 'Doctores',
           hasSubRoute: true,
           showSubRoute: false,
           base: 'doctor',
           img: 'assets/img/icons/menu-icon-02.svg',
           subMenus: [
             {
-              menuValue: 'Doctor List',
+              menuValue: 'Lista Doctores',
               route: routes.doctorsList,
               base: routes.doctorsList,
             },
             {
-              menuValue: 'Add Doctor',
+              menuValue: 'Agregar Doctor',
               route: routes.addDoctor,
               base: routes.addDoctor,
             },
             {
-              menuValue: 'Edit Doctor',
+              menuValue: 'Editar Doctor',
               route: routes.editDoctor,
               base: routes.editDoctor,
             },
           ],
         },
         {
-          menuValue: 'Patients',
+          menuValue: 'Pacientes',
           hasSubRoute: true,
           showSubRoute: false,
           base: 'patient',
           img: 'assets/img/icons/menu-icon-03.svg',
           subMenus: [
             {
-              menuValue: 'Patients List',
+              menuValue: 'Lista Pacientes',
               route: routes.patientsList,
               base: routes.patientsList,
             },
             {
-              menuValue: 'Add Patients',
+              menuValue: 'Agregar Pacientes',
               route: routes.addPatient,
               base: routes.addPatient,
             },
             {
-              menuValue: 'Edit Patients',
+              menuValue: 'Editar Pacientes',
               route: routes.editPatient,
               base: routes.editPatient,
             },
           ],
         },
         {
-          menuValue: 'Appointments',
+          menuValue: 'Citas',
           hasSubRoute: true,
           showSubRoute: false,
           base: 'appointments',
           img: 'assets/img/icons/menu-icon-04.svg',
           subMenus: [
             {
-              menuValue: 'Appointment List',
+              menuValue: 'Lista Citas',
               route: routes.appointmentList,
               base: routes.appointmentList,
             },
             {
-              menuValue: 'Book Appointment',
+              menuValue: 'Reservar Cita',
               route: routes.addAppointment,
               base: routes.addAppointment,
             },
             {
-              menuValue: 'Edit Appointment',
+              menuValue: 'Editar Cita',
               route: routes.editAppointment,
               base: routes.editAppointment,
             },
           ],
         },
         {
-          menuValue: 'Doctor Schedule',
+          menuValue: 'Horario del Médico',
           hasSubRoute: true,
           showSubRoute: false,
           base: 'doctor-schedule',
           img: 'assets/img/icons/menu-icon-05.svg',
           subMenus: [
             {
-              menuValue: 'Schedule List',
+              menuValue: 'Lista de Horarios',
               route: routes.schedule,
               base: routes.schedule,
             },
             {
-              menuValue: 'Book Appointment',
+              menuValue: 'Reservar cita',
               route: routes.addSchedule,
               base: routes.addSchedule,
             },
             {
-              menuValue: 'Edit Appointment',
+              menuValue: 'Editar cita',
               route: routes.editSchedule,
               base: routes.editSchedule,
             },
           ],
         },
         {
-          menuValue: 'Calendar',
+          menuValue: 'Calendario',
           route: routes.calendar,
           hasSubRoute: false,
           showSubRoute: false,
@@ -320,70 +320,6 @@ export class DataService {
           base: 'calendar',
           subMenus: [],
         },
-      ],
-    },
-    {
-      tittle: 'Extras',
-      showAsTab: false,
-      separateRoute: false,
-      menu: [
-        {
-          menuValue: 'Pages',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'gallery',
-          base2: 'profile',
-          icon: 'fa-columns',
-          faIcon: true,
-          subMenus: [
-            {
-              menuValue: 'Login',
-              route: routes.login,
-              base: routes.login,
-            },
-            {
-              menuValue: 'Register',
-              route: routes.register,
-              base: routes.register,
-            },
-            {
-              menuValue: 'Forgot Password',
-              route: routes.forgotPassword,
-              base: routes.forgotPassword,
-            },
-            {
-              menuValue: 'Change Password',
-              route: routes.changePassword,
-              base: routes.changePassword,
-            },
-            {
-              menuValue: 'Lock Screen',
-              route: routes.lockScreen,
-              base: routes.lockScreen,
-            },
-            {
-              menuValue: 'Profile',
-              route: routes.profile,
-              base: routes.profile,
-            },
-            {
-              menuValue: 'Gallery',
-              route: routes.gallery,
-              base: routes.gallery,
-            },
-            {
-              menuValue: '404 Error',
-              route: routes.error404,
-              base: routes.error404,
-            },
-            {
-              menuValue: '500 Error',
-              route: routes.error500,
-              base: routes.error500,
-            },
-          ],
-        },
-        
       ],
     },
   ];

@@ -18,9 +18,7 @@ export class EditDoctorComponent {
   }
   selectedList1: data[] = [
     {value: 'Select  Department'},
-    {value: 'Orthopedics'},
-    {value: 'Radiology'},
-    {value: 'Dentist'},
+    {value: 'Medico General'},
   ];
   selectedList2: data[] = [
     {value: 'Select City'},

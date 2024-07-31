@@ -26,13 +26,6 @@ const routes: Routes = [
           (m) => m.EditPatientModule
         ),
     },
-    {
-      path: 'patient-setting',
-      loadChildren: () =>
-        import('./patient-setting/patient-setting.module').then(
-          (m) => m.PatientSettingModule
-        ),
-    },
   ]}
  
 ];
