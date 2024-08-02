@@ -6,9 +6,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a [routerLink]="routes.appointmentList">Appointment </a></li>
+                        <li class="breadcrumb-item"><a [routerLink]="routes.appointmentList">Citas </a></li>
                         <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Appointment List</li>
+                        <li class="breadcrumb-item active">Lista de Citas</li>
                     </ul>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                             <div class="row align-items-center">
                                 <div class="col">
                                     <div class="doctor-table-blk">
-                                        <h3>Appointment</h3>
+                                        <h3>Citas</h3>
                                         <div class="doctor-search-blk">
                                             <div class="top-nav-search table-search-blk">
                                                     <input  class="form-control" placeholder="Search here" [(ngModel)]="searchDataValue" 
@@ -60,13 +60,13 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </th>
-                                        <th mat-sort-header="name">Name</th>
-                                        <th mat-sort-header="consultingDoctor">Consulting Doctor</th>
-                                        <th mat-sort-header="treatment">Treatment</th>
-                                        <th mat-sort-header="mobile">Mobile</th>
-                                        <th mat-sort-header="email">Email</th>
-                                        <th mat-sort-header="date" >Date</th>
-                                        <th mat-sort-header="time" >Time</th>
+                                        <th mat-sort-header="id">ID</th>
+                                        <th mat-sort-header="name">Nombre</th>
+                                        <th mat-sort-header="consultingDoctor">Doctor consultor</th>
+                                        <th mat-sort-header="mobile">Celular</th>
+                                        <th mat-sort-header="email">Correo</th>
+                                        <th mat-sort-header="date" >Fecha</th>
+                                        <th mat-sort-header="time" >Tiempo</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -77,9 +77,9 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </td>
+                                        <td class="profile-image"><a [routerLink]="routes.profile">1</a></td>
                                         <td class="profile-image"><a [routerLink]="routes.profile"><img width="28" height="28" [src]="data.img" class="rounded-circle m-r-5" alt=""> {{data.name}}</a></td>
                                         <td>{{data.consultingDoctor}}</td>
-                                        <td>{{data.treatment}}</td>
                                         <td><a href="javascript:;">{{data.mobile}}</a></td>
                                         <td>{{data.email}}</td>
                                         <td>{{data.date}}</td>
@@ -99,9 +99,8 @@
                             <div class="table_footer">
                                 <div class="col-sm-12 col-md-5">
                                   <div class="dataTables_info">
-                                    Showing {{ serialNumberArray[0] }} to
-                                    {{ serialNumberArray[serialNumberArray.length - 1] }} of
-                                    {{ totalData }} entries
+                                    Mostrando {{ serialNumberArray[0] }} de
+                                    {{ serialNumberArray[serialNumberArray.length - 1] }} entradas
                                   </div>
                                 </div>
                 
@@ -119,7 +118,7 @@
                                           class="page-link"
                                           href="javascript:void(0);"
                                           tabindex="-1"
-                                          >Previous</a
+                                          >Anterior</a
                                         >
                                       </li>
                 
@@ -199,7 +198,7 @@
                                           (click)="getMoreData('next')"
                                           class="page-link"
                                           href="javascript:void(0);"
-                                          >Next
+                                          >Siguiente
                                         </a>
                                       </li>
                                     </ul>

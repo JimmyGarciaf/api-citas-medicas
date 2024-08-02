@@ -134,6 +134,7 @@ export interface taxes {
   sno: number;
 }
 export interface appointmentList {
+  id: string;
   name: string;
   consultingDoctor: string;
   treatment: string;
