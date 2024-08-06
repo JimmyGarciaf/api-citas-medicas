@@ -14,11 +14,11 @@ export class LoginComponent implements OnInit {
   public passwordClass = false;
   public ERROR = false;
   form = new FormGroup({
-    email: new FormControl('admin@mcc.hn', [
+    email: new FormControl('', [
       Validators.required,
       Validators.email,
     ]),
-    password: new FormControl('clinica1234', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
   });
  
   get f() {
@@ -33,24 +33,33 @@ export class LoginComponent implements OnInit {
   }
 
   loginFormSubmit() {
+    // Verifica si el formulario es válido
     if (this.form.valid) {
-      this.ERROR = false;
-      this.auth.login(this.form.value.email ? this.form.value.email : '', this.form.value.password ? this.form.value.password : '')
-      .subscribe((resp:any) => {
-        console.log(resp);
-        if(resp){
-          // El login es exitoso
-          this.router.navigate([routes.adminDashboard]);
-        }else {
-          // El login es invalido
-          this.ERROR = true;
-        }
-      },error => {
-        console.log(error);
-      })
-      ;
+        this.ERROR = false; // Resetea el estado de error antes de intentar el login
+
+        // Realiza la llamada al servicio de autenticación
+        this.auth.login(
+            this.form.value.email || '', 
+            this.form.value.password || ''
+        ).subscribe(
+            (resp: any) => {
+                // Si la respuesta es válida, redirige al dashboard
+                if (resp) {
+                    this.router.navigate([routes.adminDashboard]);
+                } else {
+                    // Si el login es inválido, muestra el mensaje de error
+                    this.ERROR = true;
+                }
+            },
+            (error) => {
+                // Maneja cualquier error inesperado que ocurra durante la autenticación
+                console.log(error);
+                this.ERROR = true; // También puedes mostrar un mensaje de error aquí si es necesario
+            }
+        );
     }
-  }
+}
+
   togglePassword() {
     this.passwordClass = !this.passwordClass;
   }

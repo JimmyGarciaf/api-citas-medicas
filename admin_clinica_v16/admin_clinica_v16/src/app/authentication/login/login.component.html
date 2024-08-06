@@ -37,11 +37,11 @@
                       }"
                     />
                     <div
-                    *ngIf="f['email'].touched && f['email'].invalid"
-                    class="invalid-feedback"
+                      *ngIf="f['email'].touched && f['email'].invalid"
+                      class="invalid-feedback"
                     >
                       <div
-                      *ngIf="f['email'].errors && f['email'].errors['required']"
+                        *ngIf="f['email'].errors && f['email'].errors['required']"
                       >
                         Correo electronico es requerido.
                       </div>
@@ -80,12 +80,15 @@
                       class="profile-views toggle-password"  tabindex="0"
                     ></span>
                   </div>
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert"> //ngIf="ERROR" el ngIf me hace un condicional para revisar si existe o no el usuario
-                    <strong>Error!</strong> hubo un <a href="javascript:void(0);" class="alert-link">problema</a> Se ha producido un error al enviar sus datos.
+                  
+                  <!-- Mostrar el mensaje de error solo si errorVisible es true -->
+                  <div *ngIf="ERROR" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error!</strong> Hubo un <a href="javascript:void(0);" class="alert-link">problema</a>. Se ha producido un error al enviar sus datos.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true"> </span>
                     </button>
-                </div>
+                  </div>
+
                   <div class="form-group login-btn">
                     <button
                       [disabled]="form.invalid"

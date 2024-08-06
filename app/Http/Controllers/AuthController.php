@@ -7,20 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Validator;
  
- 
 class AuthController extends Controller
 {
-    /**
-     * Create a new AuthController instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth:api', ['except' => ['login','register']]);
-    }
- 
- 
     /**
      * Register a User.
      *
@@ -45,7 +33,6 @@ class AuthController extends Controller
  
         return response()->json($user, 201);
     }
- 
  
     /**
      * Get a JWT via given credentials.
