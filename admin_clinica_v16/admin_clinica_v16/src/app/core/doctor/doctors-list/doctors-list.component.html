@@ -69,17 +69,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let data of doctorsList">
+                                    <tr *ngFor="let data of doctors">
                                         <td>
                                             <div class="form-check check-tables">
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </td>
-                                        <td class="profile-image"><a [routerLink]="routes.profile">1</a></td>
-                                        <td class="profile-image"><a [routerLink]="routes.profile"><img width="28" height="28" [src]="data.img" class="rounded-circle m-r-5" alt=""> {{data.name}}</a></td>
-                                        <td>{{data.department}}</td>
-                                        <td><a href="javascript:;">{{data.mobile}}</a></td>
-                                        <td>{{data.email}}</td>
+                                        <td class="profile-image"><a>{{data.idDoctores}}</a></td>
+                                        <td class="profile-image"><a>{{data.Nombre_Doctor}}</a></td>
+                                        <td>{{data.Departamento}}</td>
+                                        <td><a href="javascript:;">{{data.Celular}}</a></td>
+                                        <td>{{data.Correo}}</td>
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">
                                                 <a href="javascript:void(0);" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
@@ -186,7 +186,7 @@
                                           disabled:
                                             currentPage ===
                                               pageNumberArray[pageNumberArray.length - 1] ||
-                                              doctorsList.length === 0
+                                              doctors.length === 0
                                         }"
                                       >
                                         <a

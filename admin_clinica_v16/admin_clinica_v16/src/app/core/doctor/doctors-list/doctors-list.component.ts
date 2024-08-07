@@ -4,17 +4,17 @@ import { routes } from 'src/app/shared/routes/routes';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from "@angular/material/table";
 import { pageSelection, apiResultFormat, doctorlist } from 'src/app/shared/models/models';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-doctors-list',
   templateUrl: './doctors-list.component.html',
   styleUrls: ['./doctors-list.component.scss']
 })
-export class DoctorsListComponent implements OnInit{
+export class DoctorsListComponent implements OnInit {
   public routes = routes;
-  public doctorsList: Array<doctorlist> = [];
-  dataSource!: MatTableDataSource<doctorlist>;
-
+  public dataSource = new MatTableDataSource<doctorlist>();
+  
   public showFilter = false;
   public searchDataValue = '';
   public lastIndex = 0;
@@ -29,65 +29,56 @@ export class DoctorsListComponent implements OnInit{
   public pageSelection: Array<pageSelection> = [];
   public totalPages = 0;
 
-  constructor(public data : DataService){
+  doctors: doctorlist[] = [];
 
-  }
-  ngOnInit() {
-    this.getTableData();
-  }
-  private getTableData(): void {
-    this.doctorsList = [];
-    this.serialNumberArray = [];
+  constructor(private http: HttpClient) {}
 
-    this.data.getDoctorsList().subscribe((data: apiResultFormat) => {
-      this.totalData = data.totalData;
-      data.data.map((res: doctorlist, index: number) => {
-        const serialNumber = index + 1;
-        if (index >= this.skip && serialNumber <= this.limit) {
-         
-          this.doctorsList.push(res);
-          this.serialNumberArray.push(serialNumber);
-        }
+  ngOnInit(): void {
+    this.getDoctors();
+  }
+
+  getDoctors(): void {
+    this.http.get('http://127.0.0.1:8000/api/doctores/')
+      .subscribe((data: any) => {
+        this.doctors = data;
+        this.dataSource.data = this.doctors;
+        this.calculateTotalPages(this.doctors.length, this.pageSize);
+      }, (error) => {
+        console.error('Error fetching doctors:', error);
       });
-      this.dataSource = new MatTableDataSource<doctorlist>(this.doctorsList);
-      this.calculateTotalPages(this.totalData, this.pageSize);
-    });
   }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public searchData(value: any): void {
+
+  public searchData(value: string): void {
     this.dataSource.filter = value.trim().toLowerCase();
-    this.doctorsList = this.dataSource.filteredData;
   }
 
   public sortData(sort: Sort) {
-    const data = this.doctorsList.slice();
+    const data = this.dataSource.data.slice();
 
     if (!sort.active || sort.direction === '') {
-      this.doctorsList = data;
+      this.dataSource.data = data;
     } else {
-      this.doctorsList = data.sort((a, b) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const aValue = (a as any)[sort.active];
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const bValue = (b as any)[sort.active];
+      this.dataSource.data = data.sort((a, b) => {
+        const aValue = a[sort.active as keyof doctorlist];
+        const bValue = b[sort.active as keyof doctorlist];
         return (aValue < bValue ? -1 : 1) * (sort.direction === 'asc' ? 1 : -1);
       });
     }
   }
 
   public getMoreData(event: string): void {
-    if (event == 'next') {
+    if (event === 'next') {
       this.currentPage++;
       this.pageIndex = this.currentPage - 1;
       this.limit += this.pageSize;
       this.skip = this.pageSize * this.pageIndex;
-      this.getTableData();
-    } else if (event == 'previous') {
+      this.getDoctors();
+    } else if (event === 'previous') {
       this.currentPage--;
       this.pageIndex = this.currentPage - 1;
       this.limit -= this.pageSize;
       this.skip = this.pageSize * this.pageIndex;
-      this.getTableData();
+      this.getDoctors();
     }
   }
 
@@ -95,12 +86,7 @@ export class DoctorsListComponent implements OnInit{
     this.currentPage = pageNumber;
     this.skip = this.pageSelection[pageNumber - 1].skip;
     this.limit = this.pageSelection[pageNumber - 1].limit;
-    if (pageNumber > this.currentPage) {
-      this.pageIndex = pageNumber - 1;
-    } else if (pageNumber < this.currentPage) {
-      this.pageIndex = pageNumber + 1;
-    }
-    this.getTableData();
+    this.getDoctors();
   }
 
   public PageSize(): void {
@@ -108,17 +94,13 @@ export class DoctorsListComponent implements OnInit{
     this.limit = this.pageSize;
     this.skip = 0;
     this.currentPage = 1;
-    this.getTableData();
+    this.getDoctors();
   }
 
   private calculateTotalPages(totalData: number, pageSize: number): void {
     this.pageNumberArray = [];
-    this.totalPages = totalData / pageSize;
-    if (this.totalPages % 1 != 0) {
-      this.totalPages = Math.trunc(this.totalPages + 1);
-    }
-    /* eslint no-var: off */
-    for (var i = 1; i <= this.totalPages; i++) {
+    this.totalPages = Math.ceil(totalData / pageSize);
+    for (let i = 1; i <= this.totalPages; i++) {
       const limit = pageSize * i;
       const skip = limit - pageSize;
       this.pageNumberArray.push(i);
