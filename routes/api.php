@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Pacientes;
+use App\Http\Controllers\DoctorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,4 +42,13 @@ Route::group([
     Route::get('/{dni}', [Pacientes::class, 'show']);
     Route::put('/{dni}', [Pacientes::class, 'update']);
     Route::delete('/{dni}', [Pacientes::class, 'destroy']);
+});
+
+Route::group([
+    'prefix' => 'doctores'
+], function () {
+    Route::get('/', [DoctorController::class, 'index']);
+    Route::post('/', [DoctorController::class, 'store']);
+    Route::get('/{idDoctores}', [DoctorController::class, 'show']);
+    Route::put('/{idDoctores}', [DoctorController::class, 'update']);
 });
