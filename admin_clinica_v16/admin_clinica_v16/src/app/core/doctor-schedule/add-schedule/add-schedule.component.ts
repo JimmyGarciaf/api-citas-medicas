@@ -13,10 +13,7 @@ export class AddScheduleComponent {
   public selectedValue !: string  ;
 
   selectedList: data[] = [
-    {value: 'Choose Department'},
-    {value: 'Cardiology'},
-    {value: 'Urology'},
-    {value: 'Radiology'},
+    {value: 'Medico General'}
   ];
 
 }
