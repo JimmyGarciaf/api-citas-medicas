@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { routes } from 'src/app/shared/routes/routes';
-interface data {
-  value: string ;
-}
+
 @Component({
   selector: 'app-add-doctor',
   templateUrl: './add-doctor.component.html',
@@ -10,26 +10,33 @@ interface data {
 })
 export class AddDoctorComponent {
   public routes = routes;
-  public selectedValue !: string ;
+  public selectedValue!: string;
 
-  selectedList1: data[] = [
-    {value: 'Select Department'},
-    {value: 'Medico General'},
+  // Variables para los datos del formulario
+  public doctor = {
+    Nombre_Doctor: '',
+    Departamento: '',
+    Celular: '',
+    Correo: '',
+    Genero: ''
+  };
+
+  selectedList1 = [
+    { value: 'Medico General' },
+    // Agrega más departamentos según sea necesario
   ];
-  selectedList2: data[] = [
-    {value: 'Select City'},
-    {value: 'Alaska'},
-    {value: 'Los Angeles'},
-  ];
-  selectedList3: data[] = [
-    {value: 'Select Country'},
-    {value: 'Usa'},
-    {value: 'Uk'},
-    {value: 'Italy'},
-  ];
-  selectedList4: data[] = [
-    {value: 'Select State'},
-    {value: 'Alaska'},
-    {value: 'California'},
-  ];
+
+  constructor(private http: HttpClient, private router: Router) {}
+
+  onSubmit() {
+    this.http.post('http://127.0.0.1:8000/api/doctores/', this.doctor).subscribe(
+      (response) => {
+        console.log('Doctor agregado exitosamente', response);
+        this.router.navigate([this.routes.doctorsList]); // Redirigir a la lista de doctores
+      },
+      (error) => {
+        console.error('Error al agregar doctor', error);
+      }
+    );
+  }
 }

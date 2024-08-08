@@ -1,86 +1,126 @@
 <div class="page-wrapper">
     <div class="content">
-
-        <!-- Page Header -->
-        <div class="page-header">
-            <div class="row">
-                <div class="col-sm-12">
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a [routerLink]="routes.doctorsList">Doctor </a></li>
-                        <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Agregar Doctor</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- /Page Header -->
+      <!-- Page Header -->
+      <div class="page-header">
         <div class="row">
-            <div class="col-sm-12">
-
-                <div class="card">
-                    <div class="card-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-heading">
-                                        <h4>Detalle Doctor</h4>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="form-group local-forms">
-                                        <label for="first">Nombre Completo <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="form-group local-forms">
-                                        <label for="mobile">Celular <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="form-group local-forms">
-                                        <label for="email">Correo <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="email" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="form-group select-gender">
-                                        <label for="gender" class="gen-label">Genero<span class="login-danger">*</span></label>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input">Hombre
-                                            </label>
-                                        </div>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input">Mujer
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="form-group local-forms">
-                                        <label for="department">Departamento <span class="login-danger">*</span></label>
-                                        
-                                        <mat-select [(ngModel)]="selectedValue" [ngModelOptions]="{standalone: true}" class="form-control select"  placeholder="Seleccionar Departamento">
-                                            <mat-option *ngFor="let data of selectedList1" [value]="data.value">
-                                            {{data.value}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="doctor-submit text-end">
-                                        <button type="submit" class="btn btn-primary submit-form me-2">Enviar</button>
-                                        <button type="submit" class="btn btn-primary cancel-form">Cancelar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+          <div class="col-sm-12">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a [routerLink]="routes.doctorsList">Doctor </a></li>
+              <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
+              <li class="breadcrumb-item active">Agregar Doctor</li>
+            </ul>
+          </div>
         </div>
+      </div>
+      <!-- /Page Header -->
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <form (ngSubmit)="onSubmit()">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-heading">
+                      <h4>Detalle Doctor</h4>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label for="first">Nombre Completo <span class="login-danger">*</span></label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        [(ngModel)]="doctor.Nombre_Doctor"
+                        name="Nombre_Doctor"
+                        placeholder=""
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-6">
+                    <div class="form-group local-forms">
+                      <label for="mobile">Celular <span class="login-danger">*</span></label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        [(ngModel)]="doctor.Celular"
+                        name="Celular"
+                        placeholder=""
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-6">
+                    <div class="form-group local-forms">
+                      <label for="email">Correo <span class="login-danger">*</span></label>
+                      <input
+                        class="form-control"
+                        type="email"
+                        [(ngModel)]="doctor.Correo"
+                        name="Correo"
+                        placeholder=""
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-6">
+                    <div class="form-group select-gender">
+                      <label for="gender" class="gen-label">Género <span class="login-danger">*</span></label>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input
+                            type="radio"
+                            [(ngModel)]="doctor.Genero"
+                            name="Genero"
+                            value="Hombre"
+                            class="form-check-input"
+                            required
+                          />Hombre
+                        </label>
+                      </div>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input
+                            type="radio"
+                            [(ngModel)]="doctor.Genero"
+                            name="Genero"
+                            value="Mujer"
+                            class="form-check-input"
+                            required
+                          />Mujer
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label for="department">Departamento <span class="login-danger">*</span></label>
+                      <mat-select
+                        [(ngModel)]="doctor.Departamento"
+                        name="Departamento"
+                        [ngModelOptions]="{ standalone: true }"
+                        class="form-control select"
+                        placeholder="Seleccionar Departamento"
+                        required
+                      >
+                        <mat-option *ngFor="let data of selectedList1" [value]="data.value">
+                          {{ data.value }}
+                        </mat-option>
+                      </mat-select>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="doctor-submit text-end">
+                      <button type="submit" class="btn btn-primary submit-form me-2">Enviar</button>
+                      <button type="button" class="btn btn-primary cancel-form">Cancelar</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+  
