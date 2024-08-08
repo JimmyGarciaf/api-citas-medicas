@@ -153,7 +153,7 @@ export class routes {
     return this.baseUrl + '/doctor/doctors-list';
   }
   public static get editDoctor(): string {
-    return this.baseUrl + '/doctor/edit-doctor';
+    return this.baseUrl + '/doctor/edit-doctor/:idDoctores';
   }
   public static get addSchedule(): string {
     return this.baseUrl + '/doctor-schedule/add-schedule';

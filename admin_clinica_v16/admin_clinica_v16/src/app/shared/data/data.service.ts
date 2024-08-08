@@ -231,11 +231,11 @@ export class DataService {
               route: routes.addDoctor,
               base: routes.addDoctor,
             },
-            {
-              menuValue: 'Editar Doctor',
-              route: routes.editDoctor,
-              base: routes.editDoctor,
-            },
+            //{
+            //  menuValue: 'Editar Doctor',
+            //  route: routes.editDoctor,
+            //  base: routes.editDoctor,
+            //},
           ],
         },
         {

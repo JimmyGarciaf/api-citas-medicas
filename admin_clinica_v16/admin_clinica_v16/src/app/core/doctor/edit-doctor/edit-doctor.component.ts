@@ -1,39 +1,68 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 import { routes } from 'src/app/shared/routes/routes';
-interface data {
-  value: string ;
-}
+
 @Component({
   selector: 'app-edit-doctor',
   templateUrl: './edit-doctor.component.html',
   styleUrls: ['./edit-doctor.component.scss']
 })
-export class EditDoctorComponent {
+export class EditDoctorComponent implements OnInit {
   public routes = routes;
-  public deleteIcon = true;
-  public selectedValue !: string ;
+  public selectedValue!: string;
 
-  deleteIconFunc(){
-    this.deleteIcon = !this.deleteIcon
+  // Variables para los datos del formulario
+  public doctor = {
+    Nombre_Doctor: '',
+    Departamento: '',
+    Celular: '',
+    Correo: '',
+    Genero: ''
+  };
+
+  selectedList1 = [
+    { value: 'Medico General' },
+    // Agrega más departamentos según sea necesario
+  ];
+
+  private doctorId: string | null = null;
+
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    this.doctorId = this.route.snapshot.paramMap.get('idDoctores'); // Obtener el ID del doctor desde la URL
+    this.loadDoctorData();
   }
-  selectedList1: data[] = [
-    {value: 'Select  Department'},
-    {value: 'Medico General'},
-  ];
-  selectedList2: data[] = [
-    {value: 'Select City'},
-    {value: 'Alaska'},
-    {value: 'California'},
-  ];
-  selectedList3: data[] = [
-    {value: 'Select Country'},
-    {value: 'Usa'},
-    {value: 'Uk'},
-    {value: 'Italy'},
-  ];
-  selectedList4: data[] = [
-    {value: 'Select State'},
-    {value: 'Alaska'},
-    {value: 'California'},
-  ];
+
+  loadDoctorData() {
+    if (this.doctorId) {
+      this.http.get(`http://127.0.0.1:8000/api/doctores/${this.doctorId}`).subscribe(
+        (response: any) => {
+          this.doctor = response;
+        },
+        (error) => {
+          console.error('Error al cargar los datos del doctor', error);
+        }
+      );
+    }
+  }
+
+  onSubmit() {
+    if (this.doctorId) {
+      this.http.put(`http://127.0.0.1:8000/api/doctores/${this.doctorId}`, this.doctor).subscribe(
+        (response) => {
+          console.log('Doctor actualizado exitosamente', response);
+          this.router.navigate([this.routes.doctorsList]); // Redirigir a la lista de doctores
+        },
+        (error) => {
+          console.error('Error al actualizar el doctor', error);
+        }
+      );
+    }
+  }
 }

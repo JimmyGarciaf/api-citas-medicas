@@ -18,7 +18,7 @@ const routes: Routes = [
         import('./add-doctor/add-doctor.module').then((m) => m.AddDoctorModule),
     },
     {
-      path: 'edit-doctor',
+      path: 'edit-doctor/:idDoctores',
       loadChildren: () =>
         import('./edit-doctor/edit-doctor.module').then(
           (m) => m.EditDoctorModule

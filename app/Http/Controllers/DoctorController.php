@@ -32,20 +32,20 @@ class DoctorController extends Controller
     // Mostrar un doctor específico
     public function show($idDoctores)
     {
-        $doctor = Doctor::findOrFail($idDoctores);
+        $doctor = Doctor::where('idDoctores', $idDoctores)->firstOrFail();
         return response()->json($doctor);
     }
 
     // Actualizar un doctor específico
     public function update(Request $request, $idDoctores)
     {
-        $doctor = Doctor::findOrFail($idDoctores);
+        $doctor = Doctor::where('idDoctores', $idDoctores)->firstOrFail();
 
         $validatedData = $request->validate([
             'Nombre_Doctor' => 'sometimes|required|string|max:255',
             'Departamento' => 'sometimes|required|string|max:255',
             'Celular' => 'sometimes|required|string|max:20',
-            'Correo' => 'sometimes|required|string|email|max:255|unique:doctores,Correo,' . $doctor->idDoctores,
+            'Correo' => 'sometimes|required|string|email|max:255|unique:doctores,Correo,' . $idDoctores . ',idDoctores',
             'Genero' => 'sometimes|required|in:Hombre,Mujer',
         ]);
 
