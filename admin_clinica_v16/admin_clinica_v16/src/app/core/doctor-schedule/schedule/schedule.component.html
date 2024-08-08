@@ -6,9 +6,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a [routerLink]="routes.schedule">Doctor Shedule </a></li>
+                        <li class="breadcrumb-item"><a [routerLink]="routes.schedule">Horario del Médico </a></li>
                         <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Schedule List</li>
+                        <li class="breadcrumb-item active">Lista de Horarios</li>
                     </ul>
                 </div>
             </div>
@@ -26,10 +26,10 @@
                             <div class="row align-items-center">
                                 <div class="col">
                                     <div class="doctor-table-blk">
-                                        <h3>Schedule List</h3>
+                                        <h3>Lista de Horarios</h3>
                                         <div class="doctor-search-blk">
                                             <div class="top-nav-search table-search-blk">
-                                                    <input  class="form-control" placeholder="Search here" [(ngModel)]="searchDataValue"
+                                                    <input  class="form-control" placeholder="Busca aquí" [(ngModel)]="searchDataValue"
                                                     (ngModelChange)="searchData(searchDataValue)">
                                                     <a class="btn"><img src="assets/img/icons/search-normal.svg" alt=""></a>
                                             </div>
@@ -60,11 +60,11 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </th>
-                                        <th mat-sort-header="doctorName">Doctor Name</th>
-                                        <th mat-sort-header="department">Department</th>
-                                        <th mat-sort-header="availableDays">Available Days</th>
-                                        <th mat-sort-header="availableTime">Available Time</th>
-                                        <th mat-sort-header="status">Status</th>
+                                        <th mat-sort-header="doctorName">Nombre del Doctor</th>
+                                        <th mat-sort-header="department">Departamento</th>
+                                        <th mat-sort-header="availableDays">Días Disponibles</th>
+                                        <th mat-sort-header="availableTime">Tiempo disponible</th>
+                                        <th mat-sort-header="status">Estado</th>
                                         <th ></th>
                                     </tr>
                                 </thead>
@@ -84,8 +84,8 @@
                                             <div class="dropdown dropdown-action">
                                                 <a href="javascript:void(0);" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" [routerLink]="routes.editSchedule"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delete_patient"><i class="fa fa-trash-alt m-r-5"></i> Delete</a>
+                                                    <a class="dropdown-item" [routerLink]="routes.editSchedule"><i class="fa-solid fa-pen-to-square m-r-5"></i> Editar</a>
+                                                    <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delete_patient"><i class="fa fa-trash-alt m-r-5"></i> Borrar</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -95,9 +95,8 @@
                             <div class="table_footer">
                                 <div class="col-sm-12 col-md-5">
                                   <div class="dataTables_info">
-                                    Showing {{ serialNumberArray[0] }} to
-                                    {{ serialNumberArray[serialNumberArray.length - 1] }} of
-                                    {{ totalData }} entries
+                                    Mostrando {{ serialNumberArray[0] }} de
+                                    {{ serialNumberArray[serialNumberArray.length - 1] }} entradas
                                   </div>
                                 </div>
                 
@@ -115,7 +114,7 @@
                                           class="page-link"
                                           href="javascript:void(0);"
                                           tabindex="-1"
-                                          >Previous</a
+                                          >Previo</a
                                         >
                                       </li>
                 
@@ -195,7 +194,7 @@
                                           (click)="getMoreData('next')"
                                           class="page-link"
                                           href="javascript:void(0);"
-                                          >Next
+                                          >Siguiente
                                         </a>
                                       </li>
                                     </ul>
