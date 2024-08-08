@@ -15,9 +15,6 @@ export class EditScheduleComponent {
   date = new FormControl(new Date());
   
   selectedList: data[] = [
-    {value: 'Choose Department'},
-    {value: 'Cardiology'},
-    {value: 'Urology'},
-    {value: 'Radiology'},
+    {value: 'Médico General'},
   ];
 }
