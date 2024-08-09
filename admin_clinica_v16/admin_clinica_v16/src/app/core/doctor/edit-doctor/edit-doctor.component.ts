@@ -52,6 +52,25 @@ export class EditDoctorComponent implements OnInit {
     }
   }
 
+  deleteDoctor() {
+    if (this.doctorId) {
+      this.http.delete(`http://127.0.0.1:8000/api/doctores/${this.doctorId}`).subscribe(
+        (response) => {
+          console.log('Doctor eliminado exitosamente', response);
+          this.router.navigate([this.routes.doctorsList]); // Redirigir a la lista de doctores
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000); // 5000 milisegundos = 5 segundos
+        }, 
+        (error) => {
+          console.error('Error al eliminar el doctor', error);
+        }
+      );
+    } else {
+      console.error('doctorId no está disponible');
+    }
+  }
+
   onSubmit() {
     if (this.doctorId) {
       this.http.put(`http://127.0.0.1:8000/api/doctores/${this.doctorId}`, this.doctor).subscribe(

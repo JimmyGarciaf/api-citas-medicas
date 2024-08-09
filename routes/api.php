@@ -51,4 +51,5 @@ Route::group([
     Route::post('/', [DoctorController::class, 'store']);
     Route::get('/{idDoctores}', [DoctorController::class, 'show']);
     Route::put('/{idDoctores}', [DoctorController::class, 'update']);
+    Route::delete('/{idDoctores}', [DoctorController::class, 'destroy']);
 });

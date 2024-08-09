@@ -52,4 +52,12 @@ class DoctorController extends Controller
         $doctor->update($validatedData);
         return response()->json($doctor);
     }
+
+    // Eliminar un doctor específico
+    public function destroy($idDoctores)
+    {
+        $doctor = Doctor::where('idDoctores', $idDoctores)->firstOrFail();
+        $doctor->delete();
+        return response()->json(['message' => 'Doctor eliminado exitosamente']);
+    }
 }

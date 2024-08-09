@@ -1,3 +1,4 @@
+
 <div class="page-wrapper">
     <div class="content">
 
@@ -71,7 +72,8 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
-                                        <button type="submit" class="btn btn-primary submit-form me-2">Enviar</button>
+                                        <button type="submit" class="btn btn-primary submit-form me-2">Actualizar</button>
+                                        <button type="button" class="btn btn-danger submit-form me-2" data-bs-toggle="modal" data-bs-target="#deleteDoctor">Eliminar</button>
                                         <button type="button" class="btn btn-primary cancel-form" (click)="router.navigate([routes.doctorsList])">Cancelar</button>
                                     </div>
                                 </div>
@@ -82,4 +84,18 @@
             </div>
         </div>
     </div>
+    <div id="deleteDoctor" class="modal fade delete-modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body text-center">
+              <img src="assets/img/sent.png" alt="" width="50" height="46">
+              <h3>¿Estás seguro de que quieres eliminar este Doctor?</h3>
+              <div class="m-t-20">
+                <a href="javascript:void(0);" class="btn btn-white me-1" data-bs-dismiss="modal">Cerrar</a>
+                <button type="button" class="btn btn-danger" (click)="deleteDoctor()">Borrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  
 </div>
