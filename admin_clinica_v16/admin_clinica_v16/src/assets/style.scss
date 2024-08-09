@@ -1219,6 +1219,10 @@ table.table {
 .btn-danger {
   background: #f62d51;
   border: 1px solid #f62d51;
+  min-width: 125px;
+  font-size: 16px;
+  border-radius: 12px;
+  padding: 8px 15px;
   &:hover {
     background-color: $background-color_10;
     border: 1px solid #e6294b;
@@ -8012,6 +8016,7 @@ a.btn.add-links {
       text-transform: uppercase;
       width: 90px;
       color: $color_13;
+      
     }
     .btn.btn-danger {
       color: $color_16;
