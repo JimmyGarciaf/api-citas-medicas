@@ -13,11 +13,13 @@ class CreatePacientesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pacientes2', function (Blueprint $table) {
-            $table->string('dni')->primary();
-            $table->string('nombre');
-            $table->string('correo')->unique();
-            $table->string('celular');
+        Schema::create('pacientes', function (Blueprint $table) {
+            $table->string('idPacientes')->primary();
+            $table->string('Nombre_Paciente');
+            $table->integer('Departamento');
+            $table->string('Celular');
+            $table->string('Correo')->unique();
+            $table->enum('Genero', ['Hombre', 'Mujer']);
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreatePacientesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pacientes2');
+        Schema::dropIfExists('pacientes');
     ;}
 }
