@@ -9,11 +9,12 @@ class Paciente extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'dni';
+    protected $primaryKey = 'idPacientes';
     public $incrementing = false;
     protected $keyType = 'string';
-
+    
     protected $fillable = [
-        'dni', 'nombre', 'correo', 'celular',
+        'idPacientes', 'Nombre_Paciente', 'Departamento', 'Celular', 'Correo', 'Genero',
     ];
+    
 }

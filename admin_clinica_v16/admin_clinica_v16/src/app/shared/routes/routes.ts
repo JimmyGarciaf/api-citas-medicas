@@ -243,7 +243,7 @@ export class routes {
     return this.baseUrl + '/patient/add-patient';
   }
   public static get editPatient(): string {
-    return this.baseUrl + '/patient/edit-patient';
+    return this.baseUrl + '/patient/edit-patient/:idPacientes';
   }
   public static get patientProfile(): string {
     return this.baseUrl + '/patient/patient-profile';

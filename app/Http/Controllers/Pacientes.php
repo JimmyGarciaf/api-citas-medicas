@@ -19,9 +19,11 @@ class Pacientes extends Controller
     {
         $validatedData = $request->validate([
             'idPacientes' => 'required|string|max:20|unique:pacientes',
-            'nombre' => 'required|string|max:255',
-            'correo' => 'required|string|email|max:255|unique:pacientes',
-            'celular' => 'required|string|max:20',
+            'Nombre_Paciente' => 'required|string|max:255',
+            'Departamento' => 'required|integer|max:255',
+            'Celular' => 'required|string|max:20',
+            'Correo' => 'required|string|email|max:255|unique:pacientes',
+            'Genero' => 'required|in:Hombre,Mujer'
         ]);
 
         $paciente = Paciente::create($validatedData);
@@ -37,19 +39,24 @@ class Pacientes extends Controller
 
     // Actualizar un paciente específico
     public function update(Request $request, $idPacientes)
-    {
-        $paciente = Paciente::where('idPacientes', $idPacientes)->firstOrFail();
+{
+    // Encuentra el paciente usando el idPacientes
+    $paciente = Paciente::where('idPacientes', $idPacientes)->firstOrFail();
 
-        $validatedData = $request->validate([
-            'idPacientes' => 'sometimes|required|string|max:20|unique:pacientes,idPacientes,' . $paciente->idPacientes,
-            'nombre' => 'sometimes|required|string|max:255',
-            'correo' => 'sometimes|required|string|email|max:255|unique:pacientes,correo,' . $paciente->idPacientes,
-            'celular' => 'sometimes|required|string|max:20',
-        ]);
+    // Valida los datos del paciente
+    $validatedData = $request->validate([
+        'Nombre_Paciente' => 'sometimes|required|string|max:255',
+        'Departamento' => 'sometimes|required|integer',  // Cambiado a string si es el nombre del departamento
+        'Celular' => 'sometimes|required|string|max:20',
+        'Correo' => 'sometimes|required|string|email|max:255|unique:pacientes,correo,' . $paciente->idPacientes . ',idPacientes',
+        'Genero' => 'sometimes|required|in:Hombre,Mujer',
+    ]);
 
-        $paciente->update($validatedData);
-        return response()->json($paciente);
-    }
+    // Actualiza los datos del paciente
+    $paciente->update($validatedData);
+
+    return response()->json($paciente);
+}
 
     // Eliminar un paciente específico (si es necesario añadir esta función)
     public function destroy($idPacientes)

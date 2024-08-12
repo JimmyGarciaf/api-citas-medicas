@@ -1,6 +1,5 @@
 <div class="page-wrapper">
     <div class="content">
-    
         <!-- Page Header -->
         <div class="page-header">
             <div class="row">
@@ -8,7 +7,7 @@
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a [routerLink]="routes.patientsList">Pacientes </a></li>
                         <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Editar Pacientes </li>
+                        <li class="breadcrumb-item active">Editar Paciente</li>
                     </ul>
                 </div>
             </div>
@@ -16,70 +15,63 @@
         <!-- /Page Header -->
         <div class="row">
             <div class="col-sm-12">
-            
                 <div class="card">
                     <div class="card-body">
-                        <form>
+                        <form (ngSubmit)="onSubmit()">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-heading">
-                                        <h4>Detalle Pacientes</h4>
+                                        <h4>Detalle Paciente</h4>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">  
                                     <div class="form-group local-forms">
                                         <label for="name">Nombre Completo <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="" >
+                                        <input class="form-control" type="text" [(ngModel)]="patient.Nombre_Paciente" name="Nombre_Paciente" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-forms">
-                                         <label  for="mobile" >Celular <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="" >
+                                         <label for="mobile">Celular <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" [(ngModel)]="patient.Celular" name="Celular" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-forms">
-                                        <label for="email" >Correo <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="email" placeholder="" >
+                                        <label for="email">Correo <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="email" [(ngModel)]="patient.Correo" name="Correo" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group select-gender">
-                                        <label for="Gender" class="gen-label">Genero<span class="login-danger">*</span></label>
+                                        <label for="gender" class="gen-label">Género<span class="login-danger">*</span></label>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input">Hombre
+                                                <input type="radio" name="Genero" [(ngModel)]="patient.Genero" value="Hombre" class="form-check-input" required>Hombre
                                             </label>
                                         </div>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input">Mujer
+                                                <input type="radio" name="Genero" [(ngModel)]="patient.Genero" value="Mujer" class="form-check-input" required>Mujer
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
-                                         <label  for="department">Departamento <span class="login-danger">*</span></label>
-                                        
-                                        <mat-select [(ngModel)]="selectedValue" [ngModelOptions]="{standalone: true}" class="form-control select"  placeholder="Seleccionar Departamento">
+                                         <label for="department">Departamento <span class="login-danger">*</span></label>
+                                        <mat-select [(ngModel)]="patient.Departamento" name="Departamento" [ngModelOptions]="{standalone: true}" class="form-control select" placeholder="Seleccionar Departamento">
                                             <mat-option *ngFor="let data of selectedList1" [value]="data.value">
-                                            {{data.value}}
+                                                {{data.value}}
                                             </mat-option>
                                         </mat-select>
                                     </div>
                                 </div>
-                                <!--<div class="col-12 col-sm-12">
-                                    <div class="form-group local-forms">
-                                        <label for="Start">Start Biography  <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" rows="3" cols="30"></textarea>
-                                    </div>
-                                </div>-->
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
-                                        <button type="submit" class="btn btn-primary submit-form me-2">Enviar</button>
-                                        <button type="submit" class="btn btn-primary cancel-form">Cancelar</button>
+                                        <button type="submit" class="btn btn-primary submit-form me-2">Actualizar</button>
+                                        <button type="button" class="btn btn-danger submit-form me-2" data-bs-toggle="modal" data-bs-target="#deletePatient">Eliminar</button>
+                                        <button type="button" class="btn btn-primary cancel-form" (click)="router.navigate([routes.patientsList])">Cancelar</button>
                                     </div>
                                 </div>
                             </div>
@@ -89,5 +81,18 @@
             </div>					
         </div>
     </div>
+    <div id="deletePatient" class="modal fade delete-modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body text-center">
+              <img src="assets/img/sent.png" alt="" width="50" height="46">
+              <h3>¿Estás seguro de que quieres eliminar este Paciente?</h3>
+              <div class="m-t-20">
+                <a href="javascript:void(0);" class="btn btn-white me-1" data-bs-dismiss="modal">Cerrar</a>
+                <button type="button" class="btn btn-danger" (click)="deletePatient()">Borrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  
 </div>
- 
