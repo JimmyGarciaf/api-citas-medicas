@@ -39,9 +39,9 @@ Route::group([
 ], function () {
     Route::get('/', [Pacientes::class, 'index']);
     Route::post('/', [Pacientes::class, 'store']);
-    Route::get('/{dni}', [Pacientes::class, 'show']);
-    Route::put('/{dni}', [Pacientes::class, 'update']);
-    Route::delete('/{dni}', [Pacientes::class, 'destroy']);
+    Route::get('/{idPacientes}', [Pacientes::class, 'show']);
+    Route::put('/{idPacientes}', [Pacientes::class, 'update']);
+    Route::delete('/{idPacientes}', [Pacientes::class, 'destroy']);
 });
 
 Route::group([

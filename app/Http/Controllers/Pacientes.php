@@ -18,7 +18,7 @@ class Pacientes extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'dni' => 'required|string|max:20|unique:pacientes',
+            'idPacientes' => 'required|string|max:20|unique:pacientes',
             'nombre' => 'required|string|max:255',
             'correo' => 'required|string|email|max:255|unique:pacientes',
             'celular' => 'required|string|max:20',
@@ -29,26 +29,33 @@ class Pacientes extends Controller
     }
 
     // Mostrar un paciente específico
-    public function show($dni)
+    public function show($idPacientes)
     {
-        $paciente = Paciente::findOrFail($dni);
+        $paciente = Paciente::where('idPacientes', $idPacientes)->firstOrFail();
         return response()->json($paciente);
     }
 
     // Actualizar un paciente específico
-    public function update(Request $request, $dni)
+    public function update(Request $request, $idPacientes)
     {
-        $paciente = Paciente::findOrFail($dni);
+        $paciente = Paciente::where('idPacientes', $idPacientes)->firstOrFail();
 
         $validatedData = $request->validate([
-            'dni' => 'sometimes|required|string|max:20|unique:pacientes,dni,' . $paciente->dni,
+            'idPacientes' => 'sometimes|required|string|max:20|unique:pacientes,idPacientes,' . $paciente->idPacientes,
             'nombre' => 'sometimes|required|string|max:255',
-            'correo' => 'sometimes|required|string|email|max:255|unique:pacientes,correo,' . $paciente->dni,
+            'correo' => 'sometimes|required|string|email|max:255|unique:pacientes,correo,' . $paciente->idPacientes,
             'celular' => 'sometimes|required|string|max:20',
         ]);
 
         $paciente->update($validatedData);
         return response()->json($paciente);
     }
- 
+
+    // Eliminar un paciente específico (si es necesario añadir esta función)
+    public function destroy($idPacientes)
+    {
+        $paciente = Paciente::where('idPacientes', $idPacientes)->firstOrFail();
+        $paciente->delete();
+        return response()->json(['message' => 'Paciente eliminado exitosamente']);
+    }
 }

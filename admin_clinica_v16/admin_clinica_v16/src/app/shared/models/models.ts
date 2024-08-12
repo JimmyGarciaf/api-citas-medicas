@@ -203,7 +203,7 @@ export interface staffList {
 }
 export interface patientlist {
   idPacientes: string;
-  Nombre_Completo: string;
+  Nombre_Paciente: string;
   Departamento: string;
   Celular: string;
   Correo: string;
