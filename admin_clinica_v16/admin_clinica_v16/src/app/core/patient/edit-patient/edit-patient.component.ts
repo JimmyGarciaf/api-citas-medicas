@@ -61,6 +61,9 @@ export class EditPatientComponent implements OnInit {
         (response) => {
           console.log('Paciente eliminado exitosamente', response);
           this.router.navigate([this.routes.patientsList]); // Redirigir a la lista de pacientes
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000); // 5000 milisegundos = 5 segundos
         }, 
         (error) => {
           console.error('Error al eliminar el paciente', error);
@@ -77,9 +80,6 @@ export class EditPatientComponent implements OnInit {
         (response) => {
           console.log('Paciente actualizado exitosamente', response);
           this.router.navigate([this.routes.patientsList]); // Redirigir a la lista de pacientes
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000); // 5000 milisegundos = 5 segundos
         },
         (error) => {
           console.error('Error al actualizar el paciente', error);

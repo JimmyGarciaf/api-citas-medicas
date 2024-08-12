@@ -250,16 +250,16 @@ export class DataService {
               route: routes.patientsList,
               base: routes.patientsList,
             },
-            {
-              menuValue: 'Agregar Pacientes',
-              route: routes.addPatient,
-              base: routes.addPatient,
-            },
-            {
-              menuValue: 'Editar Pacientes',
-              route: routes.editPatient,
-              base: routes.editPatient,
-            },
+            //{
+            //  menuValue: 'Agregar Pacientes',
+            //  route: routes.addPatient,
+            //  base: routes.addPatient,
+            //},
+            //{
+            //  menuValue: 'Editar Pacientes',
+            //  route: routes.editPatient,
+            //  base: routes.editPatient,
+            //},
           ],
         },
         {

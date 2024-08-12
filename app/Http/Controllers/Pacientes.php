@@ -18,11 +18,11 @@ class Pacientes extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'idPacientes' => 'required|string|max:20|unique:pacientes',
-            'Nombre_Paciente' => 'required|string|max:255',
-            'Departamento' => 'required|integer|max:255',
-            'Celular' => 'required|string|max:20',
-            'Correo' => 'required|string|email|max:255|unique:pacientes',
+            'idPacientes' => 'required|string|max:15|unique:pacientes',
+            'Nombre_Paciente' => 'required|string|max:15',
+            'Departamento' => 'required|integer',
+            'Celular' => 'required|string|max:15',
+            'Correo' => 'required|string|email|max:25|unique:pacientes',
             'Genero' => 'required|in:Hombre,Mujer'
         ]);
 
@@ -45,10 +45,10 @@ class Pacientes extends Controller
 
     // Valida los datos del paciente
     $validatedData = $request->validate([
-        'Nombre_Paciente' => 'sometimes|required|string|max:255',
+        'Nombre_Paciente' => 'sometimes|required|string|max:15',
         'Departamento' => 'sometimes|required|integer',  // Cambiado a string si es el nombre del departamento
-        'Celular' => 'sometimes|required|string|max:20',
-        'Correo' => 'sometimes|required|string|email|max:255|unique:pacientes,correo,' . $paciente->idPacientes . ',idPacientes',
+        'Celular' => 'sometimes|required|string|max:15',
+        'Correo' => 'sometimes|required|string|email|max:25|unique:pacientes,correo,' . $paciente->idPacientes . ',idPacientes',
         'Genero' => 'sometimes|required|in:Hombre,Mujer',
     ]);
 
