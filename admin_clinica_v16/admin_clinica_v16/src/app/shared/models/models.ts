@@ -133,10 +133,12 @@ export interface taxes {
 }
 export interface appointmentList {
   idCitas: string;
+  idPacientes: string;
   Nombre_Paciente: string;
   Celular: string;
   Correo: string;
   Fecha_Cita: string | number;
+  Doctor_Consultor: string;
 }
 export interface assetsList {
   assetId: string;

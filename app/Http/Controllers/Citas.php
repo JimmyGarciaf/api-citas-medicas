@@ -25,8 +25,8 @@ class Citas extends Controller
             'Correo' => 'required|string|email|max:25',
             'Fecha_Cita' => 'required|date',
             'Doctor_Consultor' => 'required|string|max:25',
-            'Tratamiento' => 'required|string|max:50',
-            'Notas' => 'required|string|max:50',
+            'Tratamiento' => 'required|string|max:255',
+            'Notas' => 'required|string|max:255',
         ]);
 
         $cita = Cita::create($validatedData);
@@ -53,8 +53,8 @@ class Citas extends Controller
             'Correo' => 'sometimes|required|string|email|max:25',
             'Fecha_Cita' => 'sometimes|required|date',
             'Doctor_Consultor' => 'sometimes|required|string|max:25',
-            'Tratamiento' => 'sometimes|required|string|max:50',
-            'Notas' => 'sometimes|required|string|max:50',
+            'Tratamiento' => 'sometimes|required|string|max:255',
+            'Notas' => 'sometimes|required|string|max:255',
         ]);
 
         $cita->update($validatedData);
