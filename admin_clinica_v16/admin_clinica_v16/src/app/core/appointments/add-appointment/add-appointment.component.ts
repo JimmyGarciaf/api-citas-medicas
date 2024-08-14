@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { routes } from 'src/app/shared/routes/routes';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-add-appointment',
@@ -13,6 +14,11 @@ export class AddAppointmentComponent {
   public selectedValue!: string;
   public patientData: any = {}; // Datos del paciente
   public appointment = {
+    idPacientes: '', // Asegúrate de incluir este campo
+    Nombre_Paciente: '',
+    Genero: '',
+    Celular: '',
+    Correo: '',
     Fecha_Cita: '',
     Doctor_Consultor: '',
     Tratamiento: '',
@@ -25,7 +31,8 @@ export class AddAppointmentComponent {
     { value: 'Dr.William Stephin' }
   ];
 
-  constructor(private http: HttpClient, public router: Router) {}
+  constructor(private http: HttpClient, public router: Router, private datePipe: DatePipe) {}
+
 
   onIdentityInput(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -35,9 +42,11 @@ export class AddAppointmentComponent {
       this.http.get(`http://127.0.0.1:8000/api/pacientes/${identity}`).subscribe(
         (response: any) => {
           this.patientData = response;
-          // Puedes ajustar los valores automáticamente si es necesario
-          // this.appointment.Fecha_Cita = response.Fecha_Cita;
-          // this.appointment.Doctor_Consultor = response.Doctor_Consultor;
+          this.appointment.idPacientes = this.patientData.idPacientes; // Asigna el id del paciente a la cita
+          this.appointment.Nombre_Paciente = this.patientData.Nombre_Paciente;
+          this.appointment.Genero = this.patientData.Genero;
+          this.appointment.Celular = this.patientData.Celular;
+          this.appointment.Correo = this.patientData.Correo;
         },
         (error) => {
           console.error('Error al obtener datos del paciente:', error);
@@ -46,6 +55,30 @@ export class AddAppointmentComponent {
       );
     } else {
       this.patientData = {}; // Limpia los datos si la identidad está vacía
+      this.appointment.idPacientes = ''; // Limpia el id del paciente
     }
+  }
+
+  onSubmit() {
+    const formattedDate = this.datePipe.transform(this.appointment.Fecha_Cita, 'yyyy-MM-dd HH:mm:ss');
+    const appointmentData = {
+      ...this.appointment,
+      Fecha_Cita: formattedDate,
+      idPacientes: this.patientData.idPacientes,
+      Nombre_Paciente: this.patientData.Nombre_Paciente,
+      Genero: this.patientData.Genero,
+      Celular: this.patientData.Celular,
+      Correo: this.patientData.Correo
+    };
+
+    this.http.post('http://127.0.0.1:8000/api/citas', appointmentData).subscribe(
+      (response) => {
+        console.log('Cita creada exitosamente', response);
+        this.router.navigate([this.routes.appointmentList]);
+      },
+      (error) => {
+        console.error('Error al crear cita', error);
+      }
+    );
   }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->enum('Genero', ['Hombre', 'Mujer']); // Género del paciente
             $table->string('Celular'); // Celular del paciente
             $table->string('Correo'); // Correo del paciente
-            $table->dateTime('Fecha_Cita'); // Fecha de la cita
+            $table->date('Fecha_Cita'); // Fecha de la cita
             $table->string('Doctor_Consultor'); // Nombre del doctor
             $table->string('Tratamiento'); // Tratamiento
             $table->text('Notas'); // Notas adicionales 

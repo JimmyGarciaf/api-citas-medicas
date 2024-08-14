@@ -1,6 +1,5 @@
 <div class="page-wrapper">
     <div class="content">
-    
         <!-- Page Header -->
         <div class="page-header">
             <div class="row">
@@ -16,11 +15,11 @@
         <!-- /Page Header -->
         <div class="row">
             <div class="col-sm-12">
-            
                 <div class="card">
                     <div class="card-body">
-                        <form>
+                        <form (ngSubmit)="onSubmit()">
                             <div class="row">
+                                <!-- Datos del Paciente -->
                                 <div class="col-12">
                                     <div class="form-heading">
                                         <h4>Detalles del Paciente</h4>
@@ -29,13 +28,13 @@
                                 <div class="col-12 col-md-6 col-xl-4">  
                                     <div class="form-group local-forms">
                                         <label for="identity">Identidad<span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" (input)="onIdentityInput($event)">
+                                        <input class="form-control" type="text" (input)="onIdentityInput($event)" id="identity">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">  
                                     <div class="form-group local-forms">
                                         <label for="name">Nombre Completo<span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" [(ngModel)]="patientData.Nombre_Paciente" name="Nombre_Paciente">
+                                        <input class="form-control" type="text" [(ngModel)]="patientData.Nombre_Paciente" name="Nombre_Paciente" id="name">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
@@ -43,12 +42,12 @@
                                         <label for="gender" class="gen-label">Genero<span class="login-danger">*</span></label>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" name="gender" [(ngModel)]="patientData.Genero" value="Hombre" class="form-check-input">Hombre
+                                                <input type="radio" name="Genero" [(ngModel)]="patientData.Genero" value="Hombre" class="form-check-input">Hombre
                                             </label>
                                         </div>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" name="gender" [(ngModel)]="patientData.Genero" value="Mujer" class="form-check-input">Mujer
+                                                <input type="radio" name="Genero" [(ngModel)]="patientData.Genero" value="Mujer" class="form-check-input">Mujer
                                             </label>
                                         </div>
                                     </div>
@@ -56,15 +55,16 @@
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-forms">
                                          <label for="mobile">Celular <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" [(ngModel)]="patientData.Celular" name="Celular">
+                                        <input class="form-control" type="text" [(ngModel)]="patientData.Celular" name="Celular" id="mobile">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-forms">
                                         <label for="email">Correo <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="email" [(ngModel)]="patientData.Correo" name="Correo">
+                                        <input class="form-control" type="email" [(ngModel)]="patientData.Correo" name="Correo" id="email">
                                     </div>
                                 </div>
+                                <!-- Datos de la Cita -->
                                 <div class="col-12">
                                     <div class="form-heading">
                                         <h4>Detalles de la Cita</h4>
@@ -73,7 +73,7 @@
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label for="date">Fecha de la Cita <span class="login-danger">*</span></label>
-                                        <input class="form-control datetimepicker" type="text" [(ngModel)]="appointment.Fecha_Cita" name="Fecha_Cita" matInput [matDatepicker]="picker">
+                                        <input class="form-control datetimepicker" type="text" [(ngModel)]="appointment.Fecha_Cita" name="Fecha_Cita" id="date" matInput [matDatepicker]="picker">
                                         <mat-datepicker #picker></mat-datepicker>
                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                     </div>
@@ -81,7 +81,7 @@
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-forms">
                                         <label for="Consulting">Doctor Consultor</label>
-                                        <mat-select [(ngModel)]="selectedValue" name="Doctor" [ngModelOptions]="{standalone: true}" class="form-control select" placeholder="Seleccionar Doctor">
+                                        <mat-select [(ngModel)]="appointment.Doctor_Consultor" name="Doctor" [ngModelOptions]="{standalone: true}" class="form-control select" placeholder="Seleccionar Doctor">
                                             <mat-option *ngFor="let data of selectedList" [value]="data.value">
                                                 {{data.value}}
                                             </mat-option>
@@ -91,19 +91,19 @@
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-forms">
                                         <label for="Treatment">Tratamiento </label>
-                                        <input class="form-control" type="text" [(ngModel)]="appointment.Tratamiento" name="Tratamiento">
+                                        <input class="form-control" type="text" [(ngModel)]="appointment.Tratamiento" name="Tratamiento" id="Treatment">
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12">
                                     <div class="form-group local-forms">
                                         <label for="Notes">Notas  <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" rows="3" cols="30" [(ngModel)]="appointment.Notas" name="Notas"></textarea>
+                                        <textarea class="form-control" rows="3" cols="30" [(ngModel)]="appointment.Notas" name="Notas" id="Notes"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
                                         <button type="submit" class="btn btn-primary submit-form me-2">Crear Cita</button>
-                                        <button type="button" class="btn btn-primary cancel-form">Cancelar</button>
+                                        <button type="button" class="btn btn-primary cancel-form" (click)="router.navigate([routes.appointmentList])">Cancelar</button>
                                     </div>
                                 </div>
                             </div>
