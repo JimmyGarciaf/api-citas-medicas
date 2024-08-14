@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/shared/data/data.service';
+import { routes } from 'src/app/shared/routes/routes';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { DataService } from 'src/app/shared/data/data.service';
 import { pageSelection, apiResultFormat, appointmentList } from 'src/app/shared/models/models';
-import { routes } from 'src/app/shared/routes/routes';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-appointment-list',
   templateUrl: './appointment-list.component.html',
   styleUrls: ['./appointment-list.component.scss']
 })
-export class AppointmentListComponent  implements OnInit {
+export class AppointmentListComponent implements OnInit {
   public routes = routes;
-  public appointmentList: Array<appointmentList> = [];
-  dataSource!: MatTableDataSource<appointmentList>;
+  public dataSource = new MatTableDataSource<appointmentList>();
 
   public showFilter = false;
   public searchDataValue = '';
@@ -29,65 +29,56 @@ export class AppointmentListComponent  implements OnInit {
   public pageSelection: Array<pageSelection> = [];
   public totalPages = 0;
 
-  constructor(public data : DataService){
+  appointments: appointmentList[] = [];
 
-  }
-  ngOnInit() {
-    this.getTableData();
-  }
-  private getTableData(): void {
-    this.appointmentList = [];
-    this.serialNumberArray = [];
+  constructor(private http: HttpClient) {}
 
-    this.data.getAppointmentList().subscribe((data: apiResultFormat) => {
-      this.totalData = data.totalData;
-      data.data.map((res: appointmentList, index: number) => {
-        var serialNumber = index + 1;
-        if (index >= this.skip && serialNumber <= this.limit) {
-         
-          this.appointmentList.push(res);
-          this.serialNumberArray.push(serialNumber);
-        }
+  ngOnInit(): void {
+    this.getAppointments();
+  }
+
+  getAppointments(): void {
+    this.http.get('http://127.0.0.1:8000/api/citas/')
+      .subscribe((data: any) => {
+        this.appointments = data;
+        this.dataSource.data = this.appointments;
+        this.calculateTotalPages(this.appointments.length, this.pageSize);
+      }, (error) => {
+        console.error('Error fetching appointments:', error);
       });
-      this.dataSource = new MatTableDataSource<appointmentList>(this.appointmentList);
-      this.calculateTotalPages(this.totalData, this.pageSize);
-    });
   }
- // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public searchData(value: any): void {
+
+  public searchData(value: string): void {
     this.dataSource.filter = value.trim().toLowerCase();
-    this.appointmentList = this.dataSource.filteredData;
   }
- 
+
   public sortData(sort: Sort) {
-    const data = this.appointmentList.slice();
+    const data = this.dataSource.data.slice();
 
     if (!sort.active || sort.direction === '') {
-      this.appointmentList = data;
+      this.dataSource.data = data;
     } else {
-      this.appointmentList = data.sort((a, b) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const aValue = (a as any)[sort.active];
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const bValue = (b as any)[sort.active];
+      this.dataSource.data = data.sort((a, b) => {
+        const aValue = a[sort.active as keyof appointmentList];
+        const bValue = b[sort.active as keyof appointmentList];
         return (aValue < bValue ? -1 : 1) * (sort.direction === 'asc' ? 1 : -1);
       });
     }
   }
 
   public getMoreData(event: string): void {
-    if (event == 'next') {
+    if (event === 'next') {
       this.currentPage++;
       this.pageIndex = this.currentPage - 1;
       this.limit += this.pageSize;
       this.skip = this.pageSize * this.pageIndex;
-      this.getTableData();
-    } else if (event == 'previous') {
+      this.getAppointments();
+    } else if (event === 'previous') {
       this.currentPage--;
       this.pageIndex = this.currentPage - 1;
       this.limit -= this.pageSize;
       this.skip = this.pageSize * this.pageIndex;
-      this.getTableData();
+      this.getAppointments();
     }
   }
 
@@ -95,12 +86,7 @@ export class AppointmentListComponent  implements OnInit {
     this.currentPage = pageNumber;
     this.skip = this.pageSelection[pageNumber - 1].skip;
     this.limit = this.pageSelection[pageNumber - 1].limit;
-    if (pageNumber > this.currentPage) {
-      this.pageIndex = pageNumber - 1;
-    } else if (pageNumber < this.currentPage) {
-      this.pageIndex = pageNumber + 1;
-    }
-    this.getTableData();
+    this.getAppointments();
   }
 
   public PageSize(): void {
@@ -108,19 +94,15 @@ export class AppointmentListComponent  implements OnInit {
     this.limit = this.pageSize;
     this.skip = 0;
     this.currentPage = 1;
-    this.getTableData();
+    this.getAppointments();
   }
 
   private calculateTotalPages(totalData: number, pageSize: number): void {
     this.pageNumberArray = [];
-    this.totalPages = totalData / pageSize;
-    if (this.totalPages % 1 != 0) {
-      this.totalPages = Math.trunc(this.totalPages + 1);
-    }
-    /* eslint no-var: off */
-    for (var i = 1; i <= this.totalPages; i++) {
-      var limit = pageSize * i;
-      var skip = limit - pageSize;
+    this.totalPages = Math.ceil(totalData / pageSize);
+    for (let i = 1; i <= this.totalPages; i++) {
+      const limit = pageSize * i;
+      const skip = limit - pageSize;
       this.pageNumberArray.push(i);
       this.pageSelection.push({ skip: skip, limit: limit });
     }

@@ -72,7 +72,7 @@ export class routes {
     return this.baseUrl + '/appointments/appointment-list';
   }
   public static get editAppointment(): string {
-    return this.baseUrl + '/appointments/edit-appointment';
+    return this.baseUrl + '/appointments/edit-appointment/:idCitas';
   }
   public static get addAsset(): string {
     return this.baseUrl + '/assets/add-asset';

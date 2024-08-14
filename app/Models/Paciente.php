@@ -14,7 +14,12 @@ class Paciente extends Model
     protected $keyType = 'string';
     
     protected $fillable = [
-        'idPacientes', 'Nombre_Paciente', 'Departamento', 'Celular', 'Correo', 'Genero',
+        'idPacientes',
+        'Nombre_Paciente',
+        'Departamento',
+        'Celular',
+        'Correo',
+        'Genero',
     ];
     
 }

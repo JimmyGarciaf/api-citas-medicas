@@ -132,16 +132,11 @@ export interface taxes {
   sno: number;
 }
 export interface appointmentList {
-  id: string;
-  name: string;
-  consultingDoctor: string;
-  treatment: string;
-  degree: string;
-  mobile: string;
-  email: string;
-  date: number;
-  time: number;
-  img: string;
+  idCitas: string;
+  Nombre_Paciente: string;
+  Celular: string;
+  Correo: string;
+  Fecha_Cita: string | number;
 }
 export interface assetsList {
   assetId: string;

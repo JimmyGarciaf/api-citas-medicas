@@ -20,7 +20,7 @@ const routes: Routes = [
         ),
     },
     {
-      path: 'edit-appointment',
+      path: 'edit-appointment/:idCitas',
       loadChildren: () =>
         import('./edit-appointment/edit-appointment.module').then(
           (m) => m.EditAppointmentModule

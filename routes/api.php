@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Pacientes;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\Citas;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,4 +53,14 @@ Route::group([
     Route::get('/{idDoctores}', [DoctorController::class, 'show']);
     Route::put('/{idDoctores}', [DoctorController::class, 'update']); // Probar con patch
     Route::delete('/{idDoctores}', [DoctorController::class, 'destroy']);
+});
+
+Route::group([
+    'prefix' => 'citas'
+], function () {
+    Route::get('/', [Citas::class, 'index']);
+    Route::post('/', [Citas::class, 'store']);
+    Route::get('/{idCitas}', [Citas::class, 'show']);
+    Route::put('/{idCitas}', [Citas::class, 'update']);
+    Route::delete('/{idCitas}', [Citas::class, 'destroy']);
 });

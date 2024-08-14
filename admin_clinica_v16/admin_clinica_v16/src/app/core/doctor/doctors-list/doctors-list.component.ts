@@ -28,7 +28,7 @@ export class DoctorsListComponent implements OnInit {
   public pageNumberArray: Array<number> = [];
   public pageSelection: Array<pageSelection> = [];
   public totalPages = 0;
-
+ 
   doctors: doctorlist[] = [];
 
   constructor(private http: HttpClient) {}

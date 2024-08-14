@@ -1,12 +1,12 @@
 <div class="page-wrapper">
     <div class="content">
-    
+
         <!-- Page Header -->
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a [routerLink]="routes.appointmentList">Citas </a></li>
+                        <li class="breadcrumb-item"><a [routerLink]="routes.appointmentList">Citas</a></li>
                         <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
                         <li class="breadcrumb-item active">Editar Cita</li>
                     </ul>
@@ -14,98 +14,111 @@
             </div>
         </div>
         <!-- /Page Header -->
+
         <div class="row">
             <div class="col-sm-12">
-            
                 <div class="card">
                     <div class="card-body">
-                        <form>
+                        <form (ngSubmit)="onSubmit()">
                             <div class="row">
+                                <!-- Patient Details -->
                                 <div class="col-12">
                                     <div class="form-heading">
                                         <h4>Detalles del Paciente</h4>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 col-xl-4">  
-                                    <div class="form-group local-forms">
-                                        <label for="name">Nombre Completo<span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" >
-                                    </div>
-                                </div>
+
                                 <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="form-group select-gender">
-                                        <label for="Gender" class="gen-label">Genero<span class="login-danger">*</span></label>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input">Hombre
-                                            </label>
-                                        </div>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input">Mujer
-                                            </label>
-                                        </div>
+                                    <div class="form-group local-forms">
+                                        <label for="name">Nombre Completo <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" [(ngModel)]="appointment.Nombre_Paciente" name="Nombre_Paciente" required>
                                     </div>
                                 </div>
+
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-forms">
-                                         <label  for="mobile" >Celular <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" >
+                                        <label for="mobile">Celular <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" [(ngModel)]="appointment.Celular" name="Celular" required>
                                     </div>
                                 </div>
+
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-forms">
-                                        <label for="email" >Correo <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="email"  >
+                                        <label for="email">Correo <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="email" [(ngModel)]="appointment.Correo" name="Correo" required>
                                     </div>
                                 </div>
+
+                                <!-- Appointment Details -->
                                 <div class="col-12">
                                     <div class="form-heading">
                                         <h4>Detalles de la Cita</h4>
                                     </div>
                                 </div>
+
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
-                                        <label for="Date">Fecha de la Cita <span class="login-danger">*</span></label>
-                                        <input class="form-control datetimepicker" type="text" matInput  [matDatepicker]="picker">
+                                        <label for="date">Fecha de la Cita <span class="login-danger">*</span></label>
+                                        <input class="form-control datetimepicker" type="text" [(ngModel)]="appointment.Fecha_Cita" name="Fecha_Cita" matInput [matDatepicker]="picker" required>
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                         <mat-datepicker #picker></mat-datepicker>
-                                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                                     </div>
                                 </div>
+
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-forms">
-                                        <label for="Consulting">Doctor Consultor</label>
-                                        
-                                        <mat-select [(ngModel)]="selectedValue" [ngModelOptions]="{standalone: true}" class="form-control select"  placeholder="Seleccionar Doctor">
+                                        <label for="doctor">Doctor Consultor</label>
+                                        <mat-select [(ngModel)]="appointment.Doctor_Consultor" name="Doctor" [ngModelOptions]="{standalone: true}" class="form-control select" placeholder="Seleccionar Doctor">
                                             <mat-option *ngFor="let data of selectedList" [value]="data.value">
-                                            {{data.value}}
+                                                {{data.value}}
                                             </mat-option>
                                         </mat-select>
                                     </div>
                                 </div>
+
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-forms">
-                                        <label for="Treatment">Tratamiento </label>
-                                        <input class="form-control" type="text" >
+                                        <label for="treatment">Tratamiento</label>
+                                        <input class="form-control" type="text" [(ngModel)]="appointment.Tratamiento" name="Tratamiento" required>
                                     </div>
                                 </div>
+
                                 <div class="col-12 col-sm-12">
                                     <div class="form-group local-forms">
-                                        <label for="Notes">Notas  <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" rows="3" cols="30"></textarea>
+                                        <label for="notes">Notas <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" rows="3" cols="30" [(ngModel)]="appointment.Notas" name="Notas" required></textarea>
                                     </div>
                                 </div>
+
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
-                                        <button type="submit" class="btn btn-primary submit-form me-2">Enviar</button>
-                                        <button type="submit" class="btn btn-primary cancel-form">Cancelar</button>
+                                        <button type="submit" class="btn btn-primary submit-form me-2">Actualizar</button>
+                                        <button type="button" class="btn btn-danger submit-form me-2" data-bs-toggle="modal" data-bs-target="#deleteAppointment">Eliminar</button>
+                                        <button type="button" class="btn btn-primary cancel-form" (click)="router.navigate([routes.appointmentList])">Cancelar</button>
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </div>
-                </div>							
-            </div>					
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Modal for Deleting Appointment -->
+    <div id="deleteAppointment" class="modal fade delete-modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <img src="assets/img/sent.png" alt="" width="50" height="46">
+                    <h3>¿Estás seguro de que quieres eliminar esta Cita?</h3>
+                    <div class="m-t-20">
+                        <a href="javascript:void(0);" class="btn btn-white me-1" data-bs-dismiss="modal">Cerrar</a>
+                        <button type="button" class="btn btn-danger" (click)="deleteAppointment()">Borrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

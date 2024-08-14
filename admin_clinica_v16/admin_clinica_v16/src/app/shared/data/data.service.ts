@@ -275,7 +275,7 @@ export class DataService {
               base: routes.appointmentList,
             },
             {
-              menuValue: 'Reservar Cita',
+              menuValue: 'Crear Cita',
               route: routes.addAppointment,
               base: routes.addAppointment,
             },
