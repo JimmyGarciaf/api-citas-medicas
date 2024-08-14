@@ -279,37 +279,37 @@ export class DataService {
               route: routes.addAppointment,
               base: routes.addAppointment,
             },
-            {
-              menuValue: 'Editar Cita',
-              route: routes.editAppointment,
-              base: routes.editAppointment,
-            },
+            //{
+            //  menuValue: 'Editar Cita',
+            //  route: routes.editAppointment,
+            //  base: routes.editAppointment,
+            //},
           ],
         },
-        {
-          menuValue: 'Horario del Médico',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'doctor-schedule',
-          img: 'assets/img/icons/menu-icon-05.svg',
-          subMenus: [
-            {
-              menuValue: 'Lista de Horarios',
-              route: routes.schedule,
-              base: routes.schedule,
-            },
-            {
-              menuValue: 'Reservar cita',
-              route: routes.addSchedule,
-              base: routes.addSchedule,
-            },
-            {
-              menuValue: 'Editar cita',
-              route: routes.editSchedule,
-              base: routes.editSchedule,
-            },
-          ],
-        },
+        //{
+        //  menuValue: 'Horario del Médico',
+        //  hasSubRoute: true,
+        //  showSubRoute: false,
+        //  base: 'doctor-schedule',
+        //  img: 'assets/img/icons/menu-icon-05.svg',
+        //  subMenus: [
+        //    {
+        //      menuValue: 'Lista de Horarios',
+        //      route: routes.schedule,
+        //      base: routes.schedule,
+        //    },
+        //    {
+        //      menuValue: 'Reservar cita',
+        //      route: routes.addSchedule,
+        //      base: routes.addSchedule,
+        //    },
+        //    {
+        //      menuValue: 'Editar cita',
+        //      route: routes.editSchedule,
+        //      base: routes.editSchedule,
+        //    },
+        //  ],
+        //},
         {
           menuValue: 'Calendario',
           route: routes.calendar,
