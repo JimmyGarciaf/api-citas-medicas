@@ -28,35 +28,41 @@
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">  
                                     <div class="form-group local-forms">
+                                        <label for="identity">Identidad<span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" (input)="onIdentityInput($event)">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">  
+                                    <div class="form-group local-forms">
                                         <label for="name">Nombre Completo<span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" >
+                                        <input class="form-control" type="text" [(ngModel)]="patientData.Nombre_Paciente" name="Nombre_Paciente">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group select-gender">
-                                        <label for="Gender" class="gen-label">Genero<span class="login-danger">*</span></label>
+                                        <label for="gender" class="gen-label">Genero<span class="login-danger">*</span></label>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input">Hombre
+                                                <input type="radio" name="gender" [(ngModel)]="patientData.Genero" value="Hombre" class="form-check-input">Hombre
                                             </label>
                                         </div>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input">Mujer
+                                                <input type="radio" name="gender" [(ngModel)]="patientData.Genero" value="Mujer" class="form-check-input">Mujer
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-forms">
-                                         <label  for="mobile" >Celular <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" >
+                                         <label for="mobile">Celular <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" [(ngModel)]="patientData.Celular" name="Celular">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-forms">
-                                        <label for="email" >Correo <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="email"  >
+                                        <label for="email">Correo <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="email" [(ngModel)]="patientData.Correo" name="Correo">
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -66,19 +72,18 @@
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
-                                        <label for="Date">Fecha de la Cita <span class="login-danger">*</span></label>
-                                        <input class="form-control datetimepicker" type="text" matInput  [matDatepicker]="picker">
+                                        <label for="date">Fecha de la Cita <span class="login-danger">*</span></label>
+                                        <input class="form-control datetimepicker" type="text" [(ngModel)]="appointment.Fecha_Cita" name="Fecha_Cita" matInput [matDatepicker]="picker">
                                         <mat-datepicker #picker></mat-datepicker>
-                                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-forms">
                                         <label for="Consulting">Doctor Consultor</label>
-                                        
-                                        <mat-select [(ngModel)]="selectedValue" [ngModelOptions]="{standalone: true}" class="form-control select"  placeholder="Seleccionar Doctor">
+                                        <mat-select [(ngModel)]="selectedValue" name="Doctor" [ngModelOptions]="{standalone: true}" class="form-control select" placeholder="Seleccionar Doctor">
                                             <mat-option *ngFor="let data of selectedList" [value]="data.value">
-                                            {{data.value}}
+                                                {{data.value}}
                                             </mat-option>
                                         </mat-select>
                                     </div>
@@ -86,19 +91,19 @@
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-forms">
                                         <label for="Treatment">Tratamiento </label>
-                                        <input class="form-control" type="text" >
+                                        <input class="form-control" type="text" [(ngModel)]="appointment.Tratamiento" name="Tratamiento">
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12">
                                     <div class="form-group local-forms">
                                         <label for="Notes">Notas  <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" rows="3" cols="30"></textarea>
+                                        <textarea class="form-control" rows="3" cols="30" [(ngModel)]="appointment.Notas" name="Notas"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
                                         <button type="submit" class="btn btn-primary submit-form me-2">Crear Cita</button>
-                                        <button type="submit" class="btn btn-primary cancel-form">Cancelar</button>
+                                        <button type="button" class="btn btn-primary cancel-form">Cancelar</button>
                                     </div>
                                 </div>
                             </div>
