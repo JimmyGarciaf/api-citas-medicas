@@ -39,7 +39,7 @@
                     </div>
                     <div class="dash-content dash-count">
                         <h4>Citas</h4>
-                        <h2><span class="counter-up" [countUp]="15" [options]="{duration: 10}">250</span></h2>
+                        <h2><span class="counter-up" [countUp]="totalUpcomingAppointments" [options]="{duration: 10}">{{totalUpcomingAppointments}}</span></h2>
                         <p><span class="passive-view"><i class="feather icon-arrow-up-right me-1"></i>40%</span> vs Ultimo Mes</p>
                     </div>
                 </div>
@@ -51,11 +51,13 @@
                     </div>
                     <div class="dash-content dash-count">
                         <h4>Pacientes Nuevos</h4>
-                        <h2><span class="counter-up" [countUp]="50" [options]="{duration: 10}">20</span></h2>
+                        <h2><span class="counter-up" [countUp]="totalRecentPatients" [options]="{duration: 10}">{{totalRecentPatients}}</span></h2>
                         <p><span class="passive-view"><i class="feather icon-arrow-up-right me-1"></i>20%</span> vs Ultimo Mes</p>
                     </div>
                 </div>
             </div>
+            <!-- Otros elementos
+        
             <!--<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
                 <div class="dash-widget">
                     <div class="dash-boxs comman-flex-center">
@@ -95,7 +97,7 @@
                             </div>
                             <div class="form-group mb-0">
                                 <mat-select [(ngModel)]="selectedValue" class="form-control select"  placeholder="2022">
-                                        <mat-option *ngFor="let data of selecedList" [value]="data.value">
+                                        <mat-option *ngFor="let data of selectedList" [value]="data.value">
                                           {{data.value}}
                                         </mat-option>
                                 </mat-select>
@@ -207,10 +209,10 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </th>
-                                        <th mat-sort-header="no">No</th>
-                                        <th mat-sort-header="patientName">Nombre del paciente</th>
+                                        <th mat-sort-header="no">Dni</th>
+                                        <th mat-sort-header="patientName">Nombre</th>
                                         <th mat-sort-header="doctor">Doctor</th>
-                                        <th mat-sort-header="time">Hora</th>
+                                        <th mat-sort-header="time">Fecha</th>
                                         <th mat-sort-header="disease">Enfermedad</th>
                                         <th></th>
                                     </tr>
@@ -225,19 +227,18 @@
                                         <td>{{data.no}}</td>
                                         <td>{{data.patientName}}</td>
                                         <td class="table-image appoint-doctor">
-                                            <img width="28" height="28" class="rounded-circle" [src]="data.img" alt=""> 
                                             <h2>{{data.doctor}}</h2>
                                         </td>
                                         <td class="appoint-time"><span>{{data.date}} </span>{{data.time}}</td>
                                         <td><button class="custom-badge status-green ">{{data.disease}}</button></td>
                                         <td class="text-end">
-                                            <div class="dropdown dropdown-action">
+                                           <!-- <div class="dropdown dropdown-action">
                                                 <a href="javascript:void(0);" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
                                                     <a class="dropdown-item" [routerLink]="routes.editAppointment"><i class="fa-solid fa-pen-to-square m-r-5"></i> Editar</a>
                                                     <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delete_appointment"><i class="fa fa-trash-alt m-r-5"></i> Borrar</a>
                                                 </div>
-                                            </div>
+                                            </div>-->
                                         </td>
                                     </tr>
                                 </tbody>
@@ -263,11 +264,10 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </th>
-                                        <th mat-sort-header="no">No</th>
+                                        <th mat-sort-header="no">ID</th>
                                         <th mat-sort-header="patientName">Nombre del paciente</th>
-                                        <th mat-sort-header="age">Años</th>
-                                        <th mat-sort-header="dateOfBirth">Fecha de nacimiento</th>
-                                        <th mat-sort-header="diagnosis">Diagnóstico</th>
+                                        <th mat-sort-header="age">Departamento</th>
+                                        <th mat-sort-header="dateOfBirth">Correo</th>
                                         <!--<th mat-sort-header="triage">Triage</th>-->
                                         <th></th>
                                     </tr>
@@ -281,7 +281,6 @@
                                         </td>
                                         <td>{{data.no}}</td>
                                         <td class="table-image">
-                                            <img width="28" height="28" class="rounded-circle" [src]="data.img" alt=""> 
                                             <h2>{{data.patientName}}</h2>
                                         </td>
                                         <td>{{data.age}}</td>
@@ -289,13 +288,13 @@
                                         <td>{{data.diagnosis}}</td>
                                         <!--<td><button [ngClass]="{'status-green': data.triage === 'Non Urgent', 'status-pink' : data.triage === 'Emergency','status-gray' : data.triage === 'Out Patient','status-orange' : data.triage === 'Urgent' }" class="custom-badge">{{data.triage}}</button></td>-->
                                         <td class="text-end">
-                                            <div class="dropdown dropdown-action">
+                                           <!-- <div class="dropdown dropdown-action">
                                                 <a href="javascript:void(0);" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
                                                     <a class="dropdown-item" [routerLink]="routes.editPatient"><i class="fa-solid fa-pen-to-square m-r-5"></i> Editar</a>
                                                     <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delete_appointment"><i class="fa fa-trash-alt m-r-5"></i> Borrar</a>
                                                 </div>
-                                            </div>
+                                            </div>-->
                                         </td>
                                     </tr>
                                 </tbody>

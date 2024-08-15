@@ -3,13 +3,25 @@ import { routes } from '../routes/routes';
 import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { apiResultFormat } from '../models/models';
-
+import { recentPatients, upcomingAppointments } from '../models/models';
+import { environment } from "src/environments/environment.development";
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
+  private apiUrl = environment.URL_SERVICIOS;
   constructor(private http: HttpClient) {}
+
+  // Método para obtener pacientes recientes
+  getRecentPatients(): Observable<recentPatients[]> {
+    return this.http.get<recentPatients[]>(`${this.apiUrl}/pacientes/recent`);
+  }
+
+  // Método para obtener el número total de citas
+  getUpcomingAppointments(): Observable<{ totalAppointments: number }> {
+    return this.http.get<{ totalAppointments: number }>(`${this.apiUrl}/citas/upcoming`);
+  }
 
   public getDoctorsList(): Observable<apiResultFormat> {
     return this.http.get<apiResultFormat>('assets/json/doctors-list.json').pipe(

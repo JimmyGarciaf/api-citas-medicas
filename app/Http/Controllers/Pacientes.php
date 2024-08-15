@@ -39,30 +39,38 @@ class Pacientes extends Controller
 
     // Actualizar un paciente específico
     public function update(Request $request, $idPacientes)
-{
-    // Encuentra el paciente usando el idPacientes
-    $paciente = Paciente::where('idPacientes', $idPacientes)->firstOrFail();
+    {
+        // Encuentra el paciente usando el idPacientes
+        $paciente = Paciente::where('idPacientes', $idPacientes)->firstOrFail();
 
-    // Valida los datos del paciente
-    $validatedData = $request->validate([
-        'Nombre_Paciente' => 'sometimes|required|string|max:15',
-        'Departamento' => 'sometimes|required|integer',  // Cambiado a string si es el nombre del departamento
-        'Celular' => 'sometimes|required|string|max:15',
-        'Correo' => 'sometimes|required|string|email|max:25|unique:pacientes,correo,' . $paciente->idPacientes . ',idPacientes',
-        'Genero' => 'sometimes|required|in:Hombre,Mujer',
-    ]);
+        // Valida los datos del paciente
+        $validatedData = $request->validate([
+            'Nombre_Paciente' => 'sometimes|required|string|max:15',
+            'Departamento' => 'sometimes|required|integer',
+            'Celular' => 'sometimes|required|string|max:15',
+            'Correo' => 'sometimes|required|string|email|max:25|unique:pacientes,correo,' . $paciente->idPacientes . ',idPacientes',
+            'Genero' => 'sometimes|required|in:Hombre,Mujer',
+        ]);
 
-    // Actualiza los datos del paciente
-    $paciente->update($validatedData);
+        // Actualiza los datos del paciente
+        $paciente->update($validatedData);
 
-    return response()->json($paciente);
-}
+        return response()->json($paciente);
+    }
 
-    // Eliminar un paciente específico (si es necesario añadir esta función)
+    // Eliminar un paciente específico
     public function destroy($idPacientes)
     {
         $paciente = Paciente::where('idPacientes', $idPacientes)->firstOrFail();
         $paciente->delete();
         return response()->json(['message' => 'Paciente eliminado exitosamente']);
+    }
+
+    // Obtener los pacientes recientes
+    public function recent()
+    {
+        // Suponiendo que 'created_at' es el campo de marca de tiempo
+        $recentPatients = Paciente::orderBy('created_at', 'desc')->take(5)->get();
+        return response()->json($recentPatients);
     }
 }

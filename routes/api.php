@@ -39,6 +39,7 @@ Route::group([
     'prefix' => 'pacientes'
 ], function () {
     Route::get('/', [Pacientes::class, 'index']);
+    Route::get('/recent', [Pacientes::class, 'recent']);  // Nueva ruta para pacientes recientes
     Route::post('/', [Pacientes::class, 'store']);
     Route::get('/{idPacientes}', [Pacientes::class, 'show']);
     Route::put('/{idPacientes}', [Pacientes::class, 'update']);
@@ -59,6 +60,7 @@ Route::group([
     'prefix' => 'citas'
 ], function () {
     Route::get('/', [Citas::class, 'index']);
+    Route::get('/upcoming', [Citas::class, 'upcoming']);  // Nueva ruta para citas recientes
     Route::post('/', [Citas::class, 'store']);
     Route::get('/{idCitas}', [Citas::class, 'show']);
     Route::put('/{idCitas}', [Citas::class, 'update']);
