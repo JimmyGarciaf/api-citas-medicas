@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            // Añadimos la columna idroles como llave foránea
+            $table->foreignId('idroles')->constrained('roles', 'id');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

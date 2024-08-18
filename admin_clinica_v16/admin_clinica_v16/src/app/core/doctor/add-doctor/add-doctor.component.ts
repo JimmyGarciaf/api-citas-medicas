@@ -26,7 +26,10 @@ export class AddDoctorComponent {
     // Agrega más departamentos según sea necesario
   ];
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
   onSubmit() {
     this.http.post('http://127.0.0.1:8000/api/doctores/', this.doctor).subscribe(
@@ -38,5 +41,9 @@ export class AddDoctorComponent {
         console.error('Error al agregar doctor', error);
       }
     );
+  }
+  onCancel() {
+    // Redirige a la lista de doctores
+    this.router.navigate([this.routes.doctorsList]);
   }
 }

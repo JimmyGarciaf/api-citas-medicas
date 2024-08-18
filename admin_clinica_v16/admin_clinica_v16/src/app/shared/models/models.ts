@@ -139,6 +139,7 @@ export interface appointmentList {
   Correo: string;
   Fecha_Cita: string | number;
   Doctor_Consultor: string;
+  Estado: string;
 }
 export interface assetsList {
   assetId: string;

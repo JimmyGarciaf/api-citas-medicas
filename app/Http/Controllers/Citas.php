@@ -23,7 +23,7 @@ class Citas extends Controller
             'Genero' => 'required|in:Hombre,Mujer',
             'Celular' => 'required|string|max:15',
             'Correo' => 'required|string|email|max:25',
-            'Fecha_Cita' => 'required|date',
+            'Fecha_Cita' => 'required|date_format:Y-m-d', // Asegúrate de que el formato sea correcto
             'Doctor_Consultor' => 'required|string|max:25',
             'Tratamiento' => 'required|string|max:255',
             'Notas' => 'required|string|max:255',
@@ -51,7 +51,7 @@ class Citas extends Controller
             'Genero' => 'sometimes|required|in:Hombre,Mujer',
             'Celular' => 'sometimes|required|string|max:15',
             'Correo' => 'sometimes|required|string|email|max:25',
-            'Fecha_Cita' => 'sometimes|required|date',
+            'Fecha_Cita' => 'sometimes|required|date_format:Y-m-d', // Asegúrate de que el formato sea correcto
             'Doctor_Consultor' => 'sometimes|required|string|max:25',
             'Tratamiento' => 'sometimes|required|string|max:255',
             'Notas' => 'sometimes|required|string|max:255',
@@ -77,5 +77,4 @@ class Citas extends Controller
         // Retornar el conteo total de citas como una respuesta JSON
         return response()->json(['totalAppointments' => $totalAppointments]);
     }
-
 }

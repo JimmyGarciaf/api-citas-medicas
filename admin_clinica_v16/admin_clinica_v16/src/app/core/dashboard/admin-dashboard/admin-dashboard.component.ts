@@ -38,7 +38,7 @@ export type ChartOptions = {
   styleUrls: ['./admin-dashboard.component.scss'],
 })
 export class AdminDashboardComponent implements OnInit {
-  
+  public userName: string = '';
   public routes = routes;
   public selectedValue!: string;
   selectedList: Array<{ value: string }> = [
@@ -171,6 +171,7 @@ export class AdminDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.loadRecentPatients();
     this.loadUpcomingAppointments();
+    this.loadUserName();
   }
 
   loadRecentPatients(): void {
@@ -184,6 +185,14 @@ export class AdminDashboardComponent implements OnInit {
     this.dataService.getUpcomingAppointments().subscribe((data: { totalAppointments: number }) => {
       this.totalUpcomingAppointments = data.totalAppointments; // Actualiza el total de citas próximas
     });
+  }
+
+  loadUserName(): void {
+    const user = localStorage.getItem('user');
+    if (user) {
+      const userData = JSON.parse(user);
+      this.userName = userData.name || 'Usuario'; // Ajusta el campo según tu estructura de datos
+    }
   }
 
   public sortData(sort: Sort): void {

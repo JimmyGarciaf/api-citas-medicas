@@ -3,11 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { routes } from 'src/app/shared/routes/routes';
+import { DatePipe } from '@angular/common'; // Importa DatePipe
 
 @Component({
   selector: 'app-edit-appointment',
   templateUrl: './edit-appointment.component.html',
-  styleUrls: ['./edit-appointment.component.scss']
+  styleUrls: ['./edit-appointment.component.scss'],
+  providers: [DatePipe] // Proporciona DatePipe
 })
 export class EditAppointmentComponent implements OnInit {
   public routes = routes;
@@ -36,7 +38,8 @@ export class EditAppointmentComponent implements OnInit {
   constructor(
     private http: HttpClient,
     public router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private datePipe: DatePipe // Inyecta DatePipe
   ) {}
 
   ngOnInit() {
@@ -48,12 +51,11 @@ export class EditAppointmentComponent implements OnInit {
     if (this.appointmentId) {
       this.http.get(`http://127.0.0.1:8000/api/citas/${this.appointmentId}`).subscribe(
         (response: any) => {
-          // Asignar los datos de la cita al formulario
+          // Convierte la fecha recibida a un formato 'YYYY-MM-DD'
           this.appointment = {
             ...response,
-            // Convertir la fecha a un FormControl
+            Fecha_Cita: this.datePipe.transform(new Date(response.Fecha_Cita), 'yyyy-MM-dd') || ''
           };
-          console.log(response)
         },
         (error) => {
           console.error('Error al cargar los datos de la cita', error);
@@ -83,9 +85,13 @@ export class EditAppointmentComponent implements OnInit {
 
   onSubmit() {
     if (this.appointmentId) {
-      // Preparar los datos para la solicitud PUT
-
-      this.http.put(`http://127.0.0.1:8000/api/citas/${this.appointmentId}`, this.appointment).subscribe(
+      // Convertir la fecha a un formato 'YYYY-MM-DD'
+      const updatedAppointment = {
+        ...this.appointment,
+        Fecha_Cita: this.formatDate(this.appointment.Fecha_Cita)
+      };
+  
+      this.http.put(`http://127.0.0.1:8000/api/citas/${this.appointmentId}`, updatedAppointment).subscribe(
         (response) => {
           console.log('Cita actualizada exitosamente', response);
           this.router.navigate([this.routes.appointmentList]); // Redirigir a la lista de citas
@@ -96,8 +102,13 @@ export class EditAppointmentComponent implements OnInit {
       );
     }
   }
+  
+  private formatDate(date: string): string {
+    // Asegúrate de que la fecha esté en el formato 'YYYY-MM-DD'
+    return this.datePipe.transform(date, 'yyyy-MM-dd') || '';
+  }
 
-  deleteIconFunc(){
+  deleteIconFunc() {
     this.deleteIcon = !this.deleteIcon;
   }
 }

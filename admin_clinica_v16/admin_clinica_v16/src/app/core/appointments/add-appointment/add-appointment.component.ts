@@ -60,7 +60,7 @@ export class AddAppointmentComponent {
   }
 
   onSubmit() {
-    const formattedDate = this.datePipe.transform(this.appointment.Fecha_Cita, 'yyyy-MM-dd HH:mm:ss');
+    const formattedDate = this.datePipe.transform(this.appointment.Fecha_Cita, 'yyyy-MM-dd');
     const appointmentData = {
       ...this.appointment,
       Fecha_Cita: formattedDate,

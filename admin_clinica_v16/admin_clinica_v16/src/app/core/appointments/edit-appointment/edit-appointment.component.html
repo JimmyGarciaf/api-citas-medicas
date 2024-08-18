@@ -59,7 +59,7 @@
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label for="date">Fecha de la Cita <span class="login-danger">*</span></label>
-                                        <input class="form-control datetimepicker" type="text" [(ngModel)]="appointment.Fecha_Cita" name="Fecha_Cita" matInput [matDatepicker]="picker" required>
+                                        <input class="form-control" type="text" [(ngModel)]="appointment.Fecha_Cita" name="Fecha_Cita" [matDatepicker]="picker" required>
                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                         <mat-datepicker #picker></mat-datepicker>
                                     </div>
@@ -68,7 +68,7 @@
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-forms">
                                         <label for="doctor">Doctor Consultor</label>
-                                        <mat-select [(ngModel)]="appointment.Doctor_Consultor" name="Doctor" [ngModelOptions]="{standalone: true}" class="form-control select" placeholder="Seleccionar Doctor">
+                                        <mat-select [(ngModel)]="appointment.Doctor_Consultor" name="Doctor_Consultor" [ngModelOptions]="{standalone: true}" class="form-control select" placeholder="Seleccionar Doctor">
                                             <mat-option *ngFor="let data of selectedList" [value]="data.value">
                                                 {{data.value}}
                                             </mat-option>
@@ -86,13 +86,13 @@
                                 <div class="col-12 col-sm-12">
                                     <div class="form-group local-forms">
                                         <label for="notes">Notas <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" rows="3" cols="30" [(ngModel)]="appointment.Notas" name="Notas" required></textarea>
+                                        <textarea class="form-control" rows="3" [(ngModel)]="appointment.Notas" name="Notas" required></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
-                                        <button type="submit" class="btn btn-primary submit-form me-2">Actualizar</button>
+                                        <button type="submit" class="btn btn-primary submit-form me-2">Editar Cita</button>
                                         <button type="button" class="btn btn-danger submit-form me-2" data-bs-toggle="modal" data-bs-target="#deleteAppointment">Eliminar</button>
                                         <button type="button" class="btn btn-primary cancel-form" (click)="router.navigate([routes.appointmentList])">Cancelar</button>
                                     </div>
