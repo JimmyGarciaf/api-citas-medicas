@@ -86,9 +86,13 @@ export class EditAppointmentComponent implements OnInit {
   onSubmit() {
     if (this.appointmentId) {
       // Convertir la fecha a un formato 'YYYY-MM-DD'
+      const formattedDate = this.formatDate(this.appointment.Fecha_Cita);
+      
+      console.log('Fecha Cita:', formattedDate); // Agrega esto para depurar
+  
       const updatedAppointment = {
         ...this.appointment,
-        Fecha_Cita: this.formatDate(this.appointment.Fecha_Cita)
+        Fecha_Cita: formattedDate
       };
   
       this.http.put(`http://127.0.0.1:8000/api/citas/${this.appointmentId}`, updatedAppointment).subscribe(

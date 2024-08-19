@@ -38,7 +38,7 @@ return [
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
-
+        
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DB_URL'),
@@ -97,11 +97,11 @@ return [
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DB_URL'),
-            'host' => env('DB_HOST', '10.0.1.135'),
-            'port' => env('DB_PORT', '1433'),
-            'database' => env('DB_DATABASE', 'WIN-9GOST8086DF'),
-            'username' => env('DB_USERNAME', 'SA'),
-            'password' => env('DB_PASSWORD', 'Mcchonduras2019'),
+            'host' => env('DB_SECONDARY_HOST', 'WIN-9GOST8O86DF'),
+            'port' => env('DB_SECONDARY_PORT', '1433'),
+            'database' => env('DB_SECONDARY_DATABASE', 'EvoData'),
+            'username' => env('DB_SECONDARY_USERNAME', 'sa'),
+            'password' => env('DB_SECONDARY_PASSWORD', 'Mcchonduras2019'),
             'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',
             'prefix_indexes' => true,

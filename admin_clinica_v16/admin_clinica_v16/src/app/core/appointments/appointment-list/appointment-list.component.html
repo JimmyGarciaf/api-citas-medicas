@@ -50,53 +50,54 @@
                       <!-- /Table Header -->
                       
                       <div class="table-responsive">
-                          <table matSort (matSortChange)="sortData($event)" class="table border-0 custom-table comman-table datatable mb-0">
-                              <thead>
-                                  <tr>
-                                      <th mat-sort-header="checkbox">
-                                          <div class="form-check check-tables">
-                                              <input class="form-check-input" type="checkbox" value="something">
+                        <table matSort (matSortChange)="sortData($event)" class="table border-0 custom-table comman-table datatable mb-0">
+                          <thead>
+                              <tr>
+                                  <th mat-sort-header="checkbox">
+                                      <div class="form-check check-tables">
+                                          <input class="form-check-input" type="checkbox" value="something">
+                                      </div>
+                                  </th>
+                                  <th mat-sort-header="id">ID</th>
+                                  <th mat-sort-header="dni">Dni</th>
+                                  <th mat-sort-header="name">Nombre</th>
+                                  <th mat-sort-header="mobile">Celular</th>
+                                  <th mat-sort-header="email">Correo</th>
+                                  <th mat-sort-header="date">Fecha</th>
+                                  <th mat-sort-header="doctor">Doctor</th>
+                                  <!-- Cambia el ID del mat-sort-header aquí para evitar conflictos -->
+                                  <th mat-sort-header="estado">Estado</th>
+                                  <th class="text-end"></th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let data of appointments">
+                                  <td>
+                                      <div class="form-check check-tables">
+                                          <input class="form-check-input" type="checkbox" value="something">
+                                      </div>
+                                  </td>
+                                  <td>{{data.idCitas}}</td>
+                                  <td>{{data.idPacientes}}</td>
+                                  <td>{{data.Nombre_Paciente}}</td>
+                                  <td>{{data.Celular}}</td>
+                                  <td>{{data.Correo}}</td>
+                                  <td>{{data.Fecha_Cita}}</td>
+                                  <td>{{data.Doctor_Consultor}}</td>
+                                  <td>{{data.Estado}}</td>
+                                  <td class="text-end">
+                                      <div class="dropdown dropdown-action">
+                                          <a href="javascript:void(0);" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                          <div class="dropdown-menu dropdown-menu-end">
+                                              <a class="dropdown-item" [routerLink]="[routes.editAppointment.replace(':idCitas', data.idCitas)]">
+                                                  <i class="fa-solid fa-pen-to-square m-r-5"></i> Editar
+                                              </a>
                                           </div>
-                                      </th>
-                                      <th mat-sort-header="id">ID</th>
-                                      <th mat-sort-header="dni">Dni</th>
-                                      <th mat-sort-header="name">Nombre</th>
-                                      <th mat-sort-header="mobile">Celular</th>
-                                      <th mat-sort-header="email">Correo</th>
-                                      <th mat-sort-header="date">Fecha</th>
-                                      <th mat-sort-header="doctor">Doctor</th>
-                                      <th mat-sort-header="doctor">Estado</th>
-                                      <th class="text-end"></th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                  <tr *ngFor="let data of appointments">
-                                      <td>
-                                          <div class="form-check check-tables">
-                                              <input class="form-check-input" type="checkbox" value="something">
-                                          </div>
-                                      </td>
-                                      <td>{{data.idCitas}}</td>
-                                      <td>{{data.idPacientes}}</td>
-                                      <td>{{data.Nombre_Paciente}}</td>
-                                      <td>{{data.Celular}}</td>
-                                      <td>{{data.Correo}}</td>
-                                      <td>{{data.Fecha_Cita}}</td>
-                                      <td>{{data.Doctor_Consultor}}</td>
-                                      <td>{{data.Estado}}</td>
-                                      <td class="text-end">
-                                          <div class="dropdown dropdown-action">
-                                              <a href="javascript:void(0);" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                              <div class="dropdown-menu dropdown-menu-end">
-                                                  <a class="dropdown-item" [routerLink]="[routes.editAppointment.replace(':idCitas', data.idCitas)]">
-                                                      <i class="fa-solid fa-pen-to-square m-r-5"></i> Editar
-                                                  </a>
-                                              </div>
-                                          </div>
-                                      </td>
-                                  </tr>                                  
-                              </tbody>
-                          </table>
+                                      </div>
+                                  </td>
+                              </tr>                                  
+                          </tbody>
+                        </table>                      
                           <div class="table_footer">
                               <div class="col-sm-12 col-md-5">
                                 <div class="dataTables_info">
