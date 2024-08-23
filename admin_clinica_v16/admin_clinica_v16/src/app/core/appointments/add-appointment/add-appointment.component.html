@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" id="printable-section">
                         <form (ngSubmit)="onSubmit()">
                             <div class="row">
                                 <!-- Datos del Paciente -->
@@ -25,6 +25,7 @@
                                         <h4>Detalles del Paciente</h4>
                                     </div>
                                 </div>
+                                <!-- Aquí empiezan los campos del paciente -->
                                 <div class="col-12 col-md-6 col-xl-4">  
                                     <div class="form-group local-forms">
                                         <label for="identity">Identidad<span class="login-danger">*</span></label>
@@ -70,6 +71,7 @@
                                         <h4>Detalles de la Cita</h4>
                                     </div>
                                 </div>
+                                <!-- Aquí empiezan los campos de la cita -->
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label for="date">Fecha de la Cita <span class="login-danger">*</span></label>
@@ -106,16 +108,19 @@
                                         <textarea class="form-control" rows="3" cols="30" [(ngModel)]="appointment.Notas" name="Notas" id="Notes"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="doctor-submit text-end">
-                                        <button type="submit" class="btn btn-primary submit-form me-2">Crear Cita</button>
-                                        <button type="button" class="btn btn-primary cancel-form" (click)="router.navigate([routes.appointmentList])">Cancelar</button>
-                                        <button type="button" class="btn btn-primary imprimir-form" (click)="printSection()">Imprimir</button>
-                                    </div>
-                                </div>
+                                <!-- Fin de la sección que se imprime -->
                             </div>
                         </form>
                     </div>
+                    <!-- Botones de acción -->
+                    <div class="col-12">
+                        <div class="doctor-submit text-end">
+                            <button type="submit" class="btn btn-primary submit-form me-2">Crear Cita</button>
+                            <button type="button" class="btn btn-primary cancel-form" (click)="router.navigate([routes.appointmentList])">Cancelar</button>
+                            <button type="button" class="btn btn-primary imprimir-form" (click)="printSection()">Imprimir</button>
+                        </div>
+                    </div>
+                    <!-- /Botones de acción -->
                 </div>							
             </div>					
         </div>

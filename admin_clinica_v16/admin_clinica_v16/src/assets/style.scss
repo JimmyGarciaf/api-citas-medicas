@@ -8178,12 +8178,15 @@ a.status-grey {
   border-radius: 10px;
 }
 .doctor-submit {
+  position: relative;
+  bottom: 20px;
+  right: 17px;
   .btn-primary {
     min-width: 131px;
     font-size: 14px;
     font-weight: 500;
     border-radius: 12px;
-    padding: 10px 15px;
+    padding: 10px 15px;  
   }
   .cancel-form {
     background: rgba(51, 52, 72, 0.05);
