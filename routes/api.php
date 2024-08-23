@@ -44,6 +44,7 @@ Route::group([
     Route::get('/{idPacientes}', [Pacientes::class, 'show']);
     Route::put('/{idPacientes}', [Pacientes::class, 'update']);
     Route::delete('/{idPacientes}', [Pacientes::class, 'destroy']);
+    Route::post('/transfer', [Pacientes::class, 'transferData']);  // Nueva ruta para transferir datos
 });
 
 Route::group([
