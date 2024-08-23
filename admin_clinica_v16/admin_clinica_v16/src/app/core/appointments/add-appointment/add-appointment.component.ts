@@ -21,6 +21,7 @@ export class AddAppointmentComponent {
     Correo: '',
     Fecha_Cita: '',
     Doctor_Consultor: '',
+    Diagnostico: '',
     Tratamiento: '',
     Notas: ''
   };
@@ -80,5 +81,15 @@ export class AddAppointmentComponent {
         console.error('Error al crear cita', error);
       }
     );
+  }
+  // Nueva función para imprimir la sección
+  printSection(): void {
+    const printContent = document.getElementById('section-to-print');
+    const WindowPrt = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+    WindowPrt?.document.write(printContent?.innerHTML || '');
+    WindowPrt?.document.close();
+    WindowPrt?.focus();
+    WindowPrt?.print();
+    WindowPrt?.close();
   }
 }

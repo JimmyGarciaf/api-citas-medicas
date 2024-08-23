@@ -88,6 +88,12 @@
                                         </mat-select>
                                     </div>
                                 </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group local-forms">
+                                        <label for="Notes">Diagnóstico <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" rows="3" cols="30" [(ngModel)]="appointment.Diagnostico" name="Diagnostico" id="diagnosis"></textarea>
+                                    </div>
+                                </div>
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-forms">
                                         <label for="Treatment">Tratamiento </label>
@@ -96,7 +102,7 @@
                                 </div>
                                 <div class="col-12 col-sm-12">
                                     <div class="form-group local-forms">
-                                        <label for="Notes">Notas  <span class="login-danger">*</span></label>
+                                        <label for="Notes">Observaciones <span class="login-danger">*</span></label>
                                         <textarea class="form-control" rows="3" cols="30" [(ngModel)]="appointment.Notas" name="Notas" id="Notes"></textarea>
                                     </div>
                                 </div>
@@ -104,6 +110,7 @@
                                     <div class="doctor-submit text-end">
                                         <button type="submit" class="btn btn-primary submit-form me-2">Crear Cita</button>
                                         <button type="button" class="btn btn-primary cancel-form" (click)="router.navigate([routes.appointmentList])">Cancelar</button>
+                                        <button type="button" class="btn btn-primary imprimir-form" (click)="printSection()">Imprimir</button>
                                     </div>
                                 </div>
                             </div>

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+ 
 class Cita extends Model
 {
     use HasFactory;
@@ -21,6 +21,7 @@ class Cita extends Model
         'Correo',
         'Fecha_Cita',
         'Doctor_Consultor',
+        'Diagnostico',
         'Tratamiento',
         'Notas',
     ];

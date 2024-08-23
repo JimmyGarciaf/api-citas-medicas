@@ -8194,6 +8194,16 @@ a.status-grey {
       border: 1px solid #2e37a4;
     }
   }
+  .imprimir-form {
+    background: rgba(51, 52, 72, 0.05);
+    color: $color_1;
+    margin-left: 10px;
+    &:hover {
+      background: #2e37a4;
+      color: $color_16;
+      border: 1px solid #2e37a4;
+    }
+  }
 }
 .calendar-icon {
   &:after {

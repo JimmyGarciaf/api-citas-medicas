@@ -3,7 +3,7 @@
 use Illuminate\Support\Str;
 
 return [
-
+ 
     /*
     |--------------------------------------------------------------------------
     | Default Database Connection Name
@@ -97,7 +97,8 @@ return [
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DB_URL'),
-            'host' => env('DB_SECONDARY_HOST', 'WIN-9GOST8O86DF'),
+            'dsn' => 'ODBC_DSN_NAME',
+            'host' => env('DB_SECONDARY_HOST', '192.168.3.27'),
             'port' => env('DB_SECONDARY_PORT', '1433'),
             'database' => env('DB_SECONDARY_DATABASE', 'EvoData'),
             'username' => env('DB_SECONDARY_USERNAME', 'sa'),
@@ -105,6 +106,8 @@ return [
             'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',
             'prefix_indexes' => true,
+            'trust_server_certificate' => true, // Habilita esta opción si tienes problemas de certificado
+            'encrypt' => 'no', // Puedes probar con esta opción para problemas de protocolo
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],

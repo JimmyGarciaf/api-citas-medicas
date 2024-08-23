@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('Correo'); // Correo del paciente
             $table->timestamp('Fecha_Cita'); // Fecha de la cita
             $table->string('Doctor_Consultor'); // Nombre del doctor
+            $table->string('Diagnostico'); // Diagnostico
             $table->string('Tratamiento'); // Tratamiento
             $table->text('Notas'); // Notas adicionales 
 

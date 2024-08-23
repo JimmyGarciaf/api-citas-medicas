@@ -25,6 +25,7 @@ class Citas extends Controller
             'Correo' => 'required|string|email|max:25',
             'Fecha_Cita' => 'required|date_format:Y-m-d', // Asegúrate de que el formato sea correcto
             'Doctor_Consultor' => 'required|string|max:25',
+            'Diagnostico' => 'required|string|max:255',
             'Tratamiento' => 'required|string|max:255',
             'Notas' => 'required|string|max:255',
         ]);
@@ -53,6 +54,7 @@ class Citas extends Controller
             'Correo' => 'sometimes|required|string|email|max:25',
             'Fecha_Cita' => 'sometimes|required|date_format:Y-m-d', // Asegúrate de que el formato sea correcto
             'Doctor_Consultor' => 'sometimes|required|string|max:25',
+            'Diagnostico' => 'required|string|max:255',
             'Tratamiento' => 'sometimes|required|string|max:255',
             'Notas' => 'sometimes|required|string|max:255',
         ]);
