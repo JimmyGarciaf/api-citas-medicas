@@ -77,66 +77,66 @@ class Pacientes extends Controller
 
     // Método para transferir datos de Empleado a Paciente
     public function transferData()
-{
-    try {
-        // Extraer datos de la base de datos secundaria
-        $empleados = Empleado::all();
-
-        if ($empleados->isEmpty()) {
-            return response()->json(['message' => 'No se encontraron empleados para transferir.'], 400);
-        }
-
-        // Preparar datos para insertar en la base de datos principal
-        $pacientesData = $empleados->map(function ($empleado) {
-
-            // Verificar que idPacientes no sea nulo ni esté vacío
-            if (empty($idPacientes)) {
-                // Agregar a la lista de errores y omitir este registro
-                $errores[] = "Empleado con código {$empleado->exp_codigo} tiene un idPacientes inválido.";
-                return null;
+    {
+        try {
+            // Extraer datos de la base de datos secundaria
+            $empleados = Empleado::all();
+        
+            if ($empleados->isEmpty()) {
+                return response()->json(['message' => 'No se encontraron empleados para transferir.'], 400);
             }
-
-            $departamento = substr($empleado->plz_nombre, 0, 20);
-
-            return [
-                'idPacientes' => $empleado->exp_codigo_alternativo,  
-                'Nombre_Paciente' => $empleado->exp_nombres_apellidos,
-                'Departamento' => $departamento, 
-                'Celular' => '',  
-                'Correo' => '',   
-                'Genero' => $empleado->exp_sexo == 'M' ? 'Hombre' : 'Mujer',  
-            ];
-        })->filter(); // Filtrar los elementos nulos
-
-        // Insertar datos en la base de datos principal
-        foreach ($pacientesData as $data) {
-            $paciente = Paciente::updateOrCreate(
-                ['idPacientes' => $data['idPacientes']],
-                $data
-            );
-
-            if (!$paciente) {
-                $errores[] = 'Error al insertar el paciente con id ' . $data['idPacientes'];
+        
+            // Preparar datos para insertar en la base de datos principal
+            $pacientesData = $empleados->map(function ($empleado) {
+            
+                // Verificar que idPacientes no sea nulo ni esté vacío
+                if (empty($idPacientes)) {
+                    // Agregar a la lista de errores y omitir este registro
+                    $errores[] = "Empleado con código {$empleado->exp_codigo} tiene un idPacientes inválido.";
+                    return null;
+                }
+            
+                $departamento = substr($empleado->plz_nombre, 0, 20);
+            
+                return [
+                    'idPacientes' => $empleado->exp_codigo_alternativo,  
+                    'Nombre_Paciente' => $empleado->exp_nombres_apellidos,
+                    'Departamento' => $departamento, 
+                    'Celular' => '',  
+                    'Correo' => '',   
+                    'Genero' => $empleado->exp_sexo == 'M' ? 'Hombre' : 'Mujer',  
+                ];
+            })->filter(); // Filtrar los elementos nulos
+        
+            // Insertar datos en la base de datos principal
+            foreach ($pacientesData as $data) {
+                $paciente = Paciente::updateOrCreate(
+                    ['idPacientes' => $data['idPacientes']],
+                    $data
+                );
+            
+                if (!$paciente) {
+                    $errores[] = 'Error al insertar el paciente con id ' . $data['idPacientes'];
+                }
             }
-        }
-
-        if (!empty($errores)) {
+        
+            if (!empty($errores)) {
+                return response()->json([
+                    'message' => 'Algunos datos no pudieron ser transferidos.',
+                    'errors' => $errores
+                ], 207); // Código 207: Multi-Status (indica que parte del proceso fue exitoso)
+            }
+        
+            return response()->json(['message' => 'Datos transferidos exitosamente'], 200);
+        
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que algo falle
             return response()->json([
-                'message' => 'Algunos datos no pudieron ser transferidos.',
-                'errors' => $errores
-            ], 207); // Código 207: Multi-Status (indica que parte del proceso fue exitoso)
+                'error' => 'Error al transferir datos',
+                'details' => $e->getMessage()
+            ], 500);
         }
-
-        return response()->json(['message' => 'Datos transferidos exitosamente'], 200);
-
-    } catch (\Exception $e) {
-        // Manejo de errores en caso de que algo falle
-        return response()->json([
-            'error' => 'Error al transferir datos',
-            'details' => $e->getMessage()
-        ], 500);
     }
-}
 
 
 }
