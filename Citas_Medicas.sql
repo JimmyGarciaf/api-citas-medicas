@@ -40,7 +40,6 @@ LOCK TABLES `cache` WRITE;
 /*!40000 ALTER TABLE `cache` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cache` ENABLE KEYS */;
 UNLOCK TABLES;
-
 --
 -- Table structure for table `cache_locks`
 --
