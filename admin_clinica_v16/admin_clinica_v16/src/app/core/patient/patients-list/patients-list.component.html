@@ -1,6 +1,5 @@
 <div class="page-wrapper">
   <div class="content">
-
     <!-- Page Header -->
     <div class="page-header">
       <div class="row">
@@ -17,10 +16,8 @@
 
     <div class="row">
       <div class="col-sm-12">
-
         <div class="card card-table show-entire">
           <div class="card-body">
-
             <!-- Table Header -->
             <div class="page-table-header mb-2">
               <div class="row align-items-center">
@@ -29,21 +26,19 @@
                     <h3>Lista Pacientes</h3>
                     <div class="patient-search-blk">
                       <div class="top-nav-search table-search-blk">
-                        <input class="form-control" placeholder="Buscar aquí" [(ngModel)]="searchDataValue"
-                          (ngModelChange)="searchData(searchDataValue)">
+                        <input class="form-control" placeholder="Buscar aquí" [(ngModel)]="searchDataValue" (ngModelChange)="searchData(searchDataValue)">
                       </div>
                       <div class="add-group">
-                        <a [routerLink]="routes.addPatient" class="btn btn-primary add-pluss ms-2"><img src="assets/img/icons/plus.svg" alt=""></a>
                         <a href="javascript:;" class="btn btn-primary patient-refresh ms-2"><img src="assets/img/icons/re-fresh.svg" alt=""></a>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-auto text-end float-end ms-auto download-grp">
-                  <a href="javascript:;" class=" me-2"><img src="assets/img/icons/pdf-icon-01.svg" alt=""></a>
-                  <a href="javascript:;" class=" me-2"><img src="assets/img/icons/pdf-icon-02.svg" alt=""></a>
-                  <a href="javascript:;" class=" me-2"><img src="assets/img/icons/pdf-icon-03.svg" alt=""></a>
-                  <a href="javascript:;" ><img src="assets/img/icons/pdf-icon-04.svg" alt=""></a>
+                  <a href="javascript:;" class="me-2"><img src="assets/img/icons/pdf-icon-01.svg" alt=""></a>
+                  <a href="javascript:;" class="me-2"><img src="assets/img/icons/pdf-icon-02.svg" alt=""></a>
+                  <a href="javascript:;" class="me-2"><img src="assets/img/icons/pdf-icon-03.svg" alt=""></a>
+                  <a href="javascript:;"><img src="assets/img/icons/pdf-icon-04.svg" alt=""></a>
                 </div>
               </div>
             </div>
@@ -66,7 +61,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let data of patients">
+                  <tr *ngFor="let data of patients.slice((currentPage - 1) * pageSize, currentPage * pageSize)">
                     <td>
                       <div class="form-check check-tables">
                         <input class="form-check-input" type="checkbox" value="something">
@@ -93,8 +88,7 @@
               <div class="table_footer">
                 <div class="col-sm-12 col-md-5">
                   <div class="dataTables_info">
-                    Mostrando {{ serialNumberArray[0] }} de
-                    {{ serialNumberArray[serialNumberArray.length - 1] }} entradas
+                    Mostrando del registro {{ (currentPage - 1) * pageSize + 1 }} al {{ getMinValue(currentPage * pageSize, patients.length) }} de {{ patients.length }} totales
                   </div>
                 </div>
 
@@ -143,5 +137,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>
 </div>

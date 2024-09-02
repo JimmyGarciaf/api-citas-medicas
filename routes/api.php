@@ -53,7 +53,7 @@ Route::group([
     Route::get('/', [DoctorController::class, 'index']);
     Route::post('/', [DoctorController::class, 'store']);
     Route::get('/{idDoctores}', [DoctorController::class, 'show']);
-    Route::put('/{idDoctores}', [DoctorController::class, 'update']); // Probar con patch
+    Route::put('/{idDoctores}', [DoctorController::class, 'update']);
     Route::delete('/{idDoctores}', [DoctorController::class, 'destroy']);
 });
 

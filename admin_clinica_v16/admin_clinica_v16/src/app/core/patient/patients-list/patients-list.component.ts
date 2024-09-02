@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from "@angular/material/table";
 import { Sort } from '@angular/material/sort';
+import { environment } from 'src/environments/environment.development'; // Importar el archivo de entorno
 import { routes } from 'src/app/shared/routes/routes';
 import { pageSelection, apiResultFormat, patientlist } from 'src/app/shared/models/models';
 
@@ -17,7 +18,7 @@ export class PatientsListComponent implements OnInit {
   public showFilter = false;
   public searchDataValue = '';
   public lastIndex = 0;
-  public pageSize = 10;
+  public pageSize = 100;
   public totalData = 0;
   public skip = 0;
   public limit: number = this.pageSize;
@@ -37,10 +38,11 @@ export class PatientsListComponent implements OnInit {
   }
 
   getPatients(): void {
-    this.http.get('http://127.0.0.1:8000/api/pacientes/')
+    this.http.get(environment.URL_SERVICIOS+environment.GET_PACIENTES) // Usar la variable de entorno
       .subscribe((data: any) => {
         this.patients = data;
         this.dataSource.data = this.patients;
+        console.log(this.patients)
         this.calculateTotalPages(this.patients.length, this.pageSize);
       }, (error) => {
         console.error('Error fetching patients:', error);
@@ -106,4 +108,9 @@ export class PatientsListComponent implements OnInit {
       this.pageSelection.push({ skip: skip, limit: limit });
     }
   }
+
+  // Nueva función para obtener el menor de dos números
+  public getMinValue(value1: number, value2: number): number {
+    return Math.min(value1, value2);
+  }
 }

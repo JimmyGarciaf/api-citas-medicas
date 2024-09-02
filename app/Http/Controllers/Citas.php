@@ -19,7 +19,7 @@ class Citas extends Controller
     {
         $validatedData = $request->validate([
             'idPacientes' => 'required|string|exists:pacientes,idPacientes',
-            'Nombre_Paciente' => 'required|string|max:15',
+            'Nombre_Paciente' => 'required|string|max:50',
             'Genero' => 'required|in:Hombre,Mujer',
             'Celular' => 'required|string|max:15',
             'Correo' => 'required|string|email|max:25',
@@ -48,7 +48,7 @@ class Citas extends Controller
 
         $validatedData = $request->validate([
             'idPacientes' => 'sometimes|required|string|exists:pacientes,idPacientes',
-            'Nombre_Paciente' => 'sometimes|required|string|max:15',
+            'Nombre_Paciente' => 'sometimes|required|string|max:50',
             'Genero' => 'sometimes|required|in:Hombre,Mujer',
             'Celular' => 'sometimes|required|string|max:15',
             'Correo' => 'sometimes|required|string|email|max:25',
