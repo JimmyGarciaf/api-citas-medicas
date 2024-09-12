@@ -96,7 +96,7 @@
                                 </ul>
                             </div>
                             <div class="form-group mb-0">
-                                <mat-select [(ngModel)]="selectedValue" class="form-control select"  placeholder="2022">
+                                <mat-select [(ngModel)]="selectedValue" class="form-control select"  placeholder="2024">
                                         <mat-option *ngFor="let data of selectedList" [value]="data.value">
                                           {{data.value}}
                                         </mat-option>
@@ -224,22 +224,21 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </td>
-                                        <td>{{data.no}}</td>
-                                        <td>{{data.patientName}}</td>
-                                        <td class="table-image appoint-doctor">
-                                            <h2>{{data.doctor}}</h2>
-                                        </td>
-                                        <td class="appoint-time"><span>{{data.date}} </span>{{data.time}}</td>
-                                        <td><button class="custom-badge status-green ">{{data.disease}}</button></td>
-                                        <td class="text-end">
-                                           <!-- <div class="dropdown dropdown-action">
+                                        <td>{{data.idPacientes}}</td>
+                                        <td>{{data.Nombre_Paciente}}</td>
+                                        <td>{{data.Doctor_Consultor}}</td>
+                                        <td>{{data.Fecha_Cita}}</td>
+                                        <td>{{data.Estado}}</td>
+                                        
+                                        <!-- <td class="text-end">
+                                           <div class="dropdown dropdown-action">
                                                 <a href="javascript:void(0);" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
                                                     <a class="dropdown-item" [routerLink]="routes.editAppointment"><i class="fa-solid fa-pen-to-square m-r-5"></i> Editar</a>
                                                     <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delete_appointment"><i class="fa fa-trash-alt m-r-5"></i> Borrar</a>
                                                 </div>
-                                            </div>-->
-                                        </td>
+                                            </div>
+                                        </td>-->
                                     </tr>
                                 </tbody>
                             </table>
@@ -266,7 +265,7 @@
                                         </th>
                                         <th mat-sort-header="no">ID</th>
                                         <th mat-sort-header="patientName">Nombre del paciente</th>
-                                        <th mat-sort-header="age">Departamento</th>
+                                        <th mat-sort-header="age">Puesto</th>
                                         <th mat-sort-header="dateOfBirth">Correo</th>
                                         <!--<th mat-sort-header="triage">Triage</th>-->
                                         <th></th>
@@ -279,23 +278,10 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </td>
-                                        <td>{{data.no}}</td>
-                                        <td class="table-image">
-                                            <h2>{{data.patientName}}</h2>
-                                        </td>
-                                        <td>{{data.age}}</td>
-                                        <td>{{data.dateOfBirth}}</td>
-                                        <td>{{data.diagnosis}}</td>
+                                        <td>{{data.idPacientes}}</td>
+                                        <td> {{data.Nombre_Paciente}}</td>
+                                        <td> {{data.Departamento}}</td>
                                         <!--<td><button [ngClass]="{'status-green': data.triage === 'Non Urgent', 'status-pink' : data.triage === 'Emergency','status-gray' : data.triage === 'Out Patient','status-orange' : data.triage === 'Urgent' }" class="custom-badge">{{data.triage}}</button></td>-->
-                                        <td class="text-end">
-                                           <!-- <div class="dropdown dropdown-action">
-                                                <a href="javascript:void(0);" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" [routerLink]="routes.editPatient"><i class="fa-solid fa-pen-to-square m-r-5"></i> Editar</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delete_appointment"><i class="fa fa-trash-alt m-r-5"></i> Borrar</a>
-                                                </div>
-                                            </div>-->
-                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

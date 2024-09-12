@@ -42,8 +42,6 @@ export class AdminDashboardComponent implements OnInit {
   public routes = routes;
   public selectedValue!: string;
   selectedList: Array<{ value: string }> = [
-    { value: '2022' },
-    { value: '2023' },
     { value: '2024' }
   ];
   @ViewChild('chart') chart!: ChartComponent;
@@ -113,18 +111,18 @@ export class AdminDashboardComponent implements OnInit {
       ],
       xaxis: {
         categories: [
-          'Jan',
+          'Ene',
           'Feb',
           'Mar',
-          'Apr',
+          'Abr',
           'May',
           'Jun',
           'Jul',
-          'Aug',
+          'Ago',
           'Sep',
           'Oct',
           'Nov',
-          'Dec',
+          'Dic',
         ],
         axisBorder: {
           show: false,
@@ -176,16 +174,18 @@ export class AdminDashboardComponent implements OnInit {
 
   loadRecentPatients(): void {
     this.dataService.getRecentPatients().subscribe((data: recentPatients[]) => {
-      this.recentPatients = data;
+      this.recentPatients = data.slice(0, 10);
       this.totalRecentPatients = data.length; // Actualiza el total de pacientes recientes
     });
   }
 
   loadUpcomingAppointments(): void {
-    this.dataService.getUpcomingAppointments().subscribe((data: { totalAppointments: number }) => {
-      this.totalUpcomingAppointments = data.totalAppointments; // Actualiza el total de citas próximas
+    this.dataService.getUpcomingAppointments().subscribe((data: upcomingAppointments[]) => {
+      this.upcomingAppointments = data.slice(0, 10); // Limita a los primeros 10 elementos
+      this.totalUpcomingAppointments = this.upcomingAppointments.length; // Actualiza el total de citas próximas
     });
   }
+  
 
   loadUserName(): void {
     const user = localStorage.getItem('user');

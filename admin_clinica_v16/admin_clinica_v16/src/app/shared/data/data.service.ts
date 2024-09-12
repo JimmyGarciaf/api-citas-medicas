@@ -13,14 +13,14 @@ export class DataService {
   private apiUrl = environment.URL_SERVICIOS;
   constructor(private http: HttpClient) {}
 
-  // Método para obtener pacientes recientes
+  // Método para obtener los pacientes
   getRecentPatients(): Observable<recentPatients[]> {
     return this.http.get<recentPatients[]>(`${this.apiUrl}/pacientes/recent`);
   }
 
   // Método para obtener el número total de citas
-  getUpcomingAppointments(): Observable<{ totalAppointments: number }> {
-    return this.http.get<{ totalAppointments: number }>(`${this.apiUrl}/citas/upcoming`);
+  getUpcomingAppointments(): Observable<upcomingAppointments[]> {
+    return this.http.get<upcomingAppointments[]>(`${this.apiUrl}/citas/upcoming`);
   }
 
   public getDoctorsList(): Observable<apiResultFormat> {

@@ -254,23 +254,22 @@ export interface blogs {
   msg: string;
 }
 export interface recentPatients {
-  no: string;
-  patientName: string;
-  age: number | string;
-  date: string | number;
-  dateOfBirth: string | number;
-  diagnosis: string;
-  img: string;
-  triage: string;
+  idPacientes: string;
+  Nombre_Paciente: string;
+  Departamento: string;
+  Celular: string;
+  Correo: string;
+  Genero: string;
 }
 export interface upcomingAppointments {
-  no: string;
-  patientName: string;
-  doctor: string;
-  date: string | number;
-  time: string | number;
-  disease: string;
-  img: string;
+  idCitas: string;
+  idPacientes: string;
+  Nombre_Paciente: string;
+  Celular: string;
+  Correo: string;
+  Fecha_Cita: string | number;
+  Doctor_Consultor: string;
+  Estado: string;
 }
 export interface socialLinks {
   icon: string;

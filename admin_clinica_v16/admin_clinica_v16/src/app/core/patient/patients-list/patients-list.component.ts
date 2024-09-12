@@ -13,8 +13,9 @@ import { pageSelection, apiResultFormat, patientlist } from 'src/app/shared/mode
 })
 export class PatientsListComponent implements OnInit {
   public routes = routes;
-  public dataSource = new MatTableDataSource<patientlist>();
-  
+  // Define el tipo explícito de MatTableDataSource para evitar el tipo 'never'
+  public dataSource: MatTableDataSource<patientlist> = new MatTableDataSource<patientlist>([]);
+
   public showFilter = false;
   public searchDataValue = '';
   public lastIndex = 0;
@@ -35,22 +36,34 @@ export class PatientsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPatients();
+
+     // Personalizar el filtro para buscar en varias columnas
+     this.dataSource.filterPredicate = (data: patientlist, filter: string): boolean => {
+      const searchTerm = filter.trim().toLowerCase();
+      return data.Nombre_Paciente.toLowerCase().includes(searchTerm) || 
+             data.Celular.toLowerCase().includes(searchTerm) || 
+             data.Correo.toLowerCase().includes(searchTerm);  // Agrega las columnas que quieras filtrar
+    };
   }
 
   getPatients(): void {
-    this.http.get(environment.URL_SERVICIOS+environment.GET_PACIENTES) // Usar la variable de entorno
+    this.http.get(environment.URL_SERVICIOS+environment.GET_PACIENTES)
       .subscribe((data: any) => {
         this.patients = data;
-        this.dataSource.data = this.patients;
-        console.log(this.patients)
+        this.dataSource.data = this.patients;  // Asignar los datos obtenidos
+        console.log(this.patients);
         this.calculateTotalPages(this.patients.length, this.pageSize);
       }, (error) => {
         console.error('Error fetching patients:', error);
       });
   }
 
+  // Función para realizar la búsqueda
   public searchData(value: string): void {
-    this.dataSource.filter = value.trim().toLowerCase();
+    this.dataSource.filter = value.trim().toLowerCase();  // Aplicar el filtro
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();  // Resetea la paginación al filtrar
+    }
   }
 
   public sortData(sort: Sort) {

@@ -70,13 +70,13 @@ class Citas extends Controller
         $cita->delete();
         return response()->json(['message' => 'Cita eliminada exitosamente']);
     }
-    
     public function upcoming()
-    {
-        // Contar cuántas citas hay en la base de datos
-        $totalAppointments = Cita::count();
+{
+    // Obtener las próximas 10 citas (puedes ajustar esto según tus necesidades)
+    $upcomingAppointments = Cita::orderBy('fecha_cita', 'asc')->take(10)->get();
     
-        // Retornar el conteo total de citas como una respuesta JSON
-        return response()->json(['totalAppointments' => $totalAppointments]);
-    }
+    // Retornar las citas próximas como una respuesta JSON
+    return response()->json($upcomingAppointments);
+}
+
 }
