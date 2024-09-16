@@ -24,13 +24,19 @@ export class EditAppointmentComponent implements OnInit {
     Fecha_Cita: '',  // Usamos FormControl para manejar la fecha
     Doctor_Consultor: '',
     Tratamiento: '',
-    Notas: ''
+    Notas: '',
+    Estado: ''
   };
 
   selectedList = [
     { value: 'Dr.Bernardo James' },
     { value: 'Dr.Andrea Lalema' },
     // Agrega más doctores según sea necesario
+  ];
+
+  selectedList2 = [
+    { value: 'Activo' },
+    { value: 'Inactivo' },
   ];
 
   private appointmentId: string | null = null;

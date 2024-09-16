@@ -85,8 +85,19 @@
 
                                 <div class="col-12 col-sm-12">
                                     <div class="form-group local-forms">
-                                        <label for="notes">Notas <span class="login-danger">*</span></label>
+                                        <label for="notes">Observaciones <span class="login-danger">*</span></label>
                                         <textarea class="form-control" rows="3" [(ngModel)]="appointment.Notas" name="Notas" required></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="form-group local-forms">
+                                        <label for="doctor">Estado <span class="login-danger">*</span></label>
+                                        <mat-select [(ngModel)]="appointment.Estado" name="Estado" [ngModelOptions]="{standalone: true}" class="form-control select" placeholder="Seleccionar Estado de la Cita">
+                                            <mat-option *ngFor="let data of selectedList2" [value]="data.value">
+                                                {{data.value}}
+                                            </mat-option>
+                                        </mat-select>
                                     </div>
                                 </div>
 

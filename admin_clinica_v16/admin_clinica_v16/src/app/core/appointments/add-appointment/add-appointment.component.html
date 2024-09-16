@@ -105,8 +105,16 @@
                                 <div class="col-12 col-sm-12">
                                     <div class="form-group local-forms">
                                         <label for="Notes">Observaciones <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" rows="3" cols="30" [(ngModel)]="appointment.Notas" name="Notas" id="Notes"></textarea>
+                                        <textarea class="form-control" rows="3" cols="30" [(ngModel)]="appointment.Observaciones" name="Notas" id="Notes"></textarea>
                                     </div>
+                                </div>
+                                <div class="form-group local-forms">
+                                    <label for="Consulting">Estado <span class="login-danger">*</span></label>
+                                    <mat-select [(ngModel)]="appointment.Estado" name="Estado" [ngModelOptions]="{standalone: true}" class="form-control select" placeholder="Seleccionar Estado de la Cita">
+                                        <mat-option *ngFor="let data of selectedList2" [value]="data.value">
+                                            {{data.value}}
+                                        </mat-option>
+                                    </mat-select>
                                 </div>
                                 <!-- Fin de la sección que se imprime -->
                             </div>

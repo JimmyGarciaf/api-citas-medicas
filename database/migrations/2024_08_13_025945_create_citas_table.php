@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('Diagnostico'); // Diagnostico
             $table->string('Tratamiento'); // Tratamiento
             $table->text('Notas'); // Notas adicionales 
+            $table->text('Estado'); // Estado de la Cita
 
             $table->foreign('idPacientes')->references('idPacientes')->on('pacientes')
                   ->onDelete('cascade')->onUpdate('cascade'); // Llave foránea

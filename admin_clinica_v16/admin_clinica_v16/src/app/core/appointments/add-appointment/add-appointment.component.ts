@@ -23,13 +23,19 @@ export class AddAppointmentComponent {
     Doctor_Consultor: '',
     Diagnostico: '',
     Tratamiento: '',
-    Notas: ''
+    Observaciones: '',
+    Estado: ''
   };
 
   selectedList = [
     { value: 'Dr.Bernardo James' },
     { value: 'Dr.Andrea Lalema' },
     { value: 'Dr.William Stephin' }
+  ];
+
+  selectedList2 = [
+    { value: 'Activo' },
+    { value: 'Inactivo' }
   ];
 
   constructor(private http: HttpClient, public router: Router, private datePipe: DatePipe) {}

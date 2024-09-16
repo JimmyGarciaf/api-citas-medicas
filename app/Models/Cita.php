@@ -24,6 +24,7 @@ class Cita extends Model
         'Diagnostico',
         'Tratamiento',
         'Notas',
+        'Estado',
     ];
 
     /**

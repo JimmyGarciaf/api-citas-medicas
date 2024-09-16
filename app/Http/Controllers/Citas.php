@@ -28,6 +28,7 @@ class Citas extends Controller
             'Diagnostico' => 'required|string|max:255',
             'Tratamiento' => 'required|string|max:255',
             'Notas' => 'required|string|max:255',
+            'Estado' => 'required|string|max:10',
         ]);
 
         $cita = Cita::create($validatedData);
@@ -57,6 +58,7 @@ class Citas extends Controller
             'Diagnostico' => 'required|string|max:255',
             'Tratamiento' => 'sometimes|required|string|max:255',
             'Notas' => 'sometimes|required|string|max:255',
+            'Estado' => 'sometimes|required|string|max:10',
         ]);
 
         $cita->update($validatedData);
