@@ -23,7 +23,7 @@ export class AddAppointmentComponent {
     Doctor_Consultor: '',
     Diagnostico: '',
     Tratamiento: '',
-    Observaciones: '',
+    Notas: '',
     Estado: ''
   };
 
