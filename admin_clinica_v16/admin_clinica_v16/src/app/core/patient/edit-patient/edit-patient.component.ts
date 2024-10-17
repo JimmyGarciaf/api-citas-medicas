@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { routes } from 'src/app/shared/routes/routes';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-edit-patient',
@@ -44,7 +45,7 @@ export class EditPatientComponent implements OnInit {
 
   loadPatientData() {
     if (this.patientId) {
-      this.http.get(`http://127.0.0.1:8000/api/pacientes/${this.patientId}`).subscribe(
+      this.http.get(environment.URL_SERVICIOS+environment.GET_PACIENTES + this.patientId).subscribe(
         (response: any) => {
           this.patient = response;
         },
@@ -57,7 +58,7 @@ export class EditPatientComponent implements OnInit {
 
   deletePatient() {
     if (this.patientId) {
-      this.http.delete(`http://127.0.0.1:8000/api/pacientes/${this.patientId}`).subscribe(
+      this.http.delete(environment.URL_SERVICIOS+environment.GET_PACIENTES + this.patientId).subscribe(
         (response) => {
           console.log('Paciente eliminado exitosamente', response);
           this.router.navigate([this.routes.patientsList]); // Redirigir a la lista de pacientes
@@ -76,7 +77,7 @@ export class EditPatientComponent implements OnInit {
 
   onSubmit() {
     if (this.patientId) {
-      this.http.put(`http://127.0.0.1:8000/api/pacientes/${this.patientId}`, this.patient).subscribe(
+      this.http.put(environment.URL_SERVICIOS+environment.GET_PACIENTES +this.patientId, this.patient).subscribe(
         (response) => {
           console.log('Paciente actualizado exitosamente', response);
           this.router.navigate([this.routes.patientsList]); // Redirigir a la lista de pacientes

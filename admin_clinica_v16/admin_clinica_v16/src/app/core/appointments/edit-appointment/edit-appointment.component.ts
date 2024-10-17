@@ -55,7 +55,7 @@ export class EditAppointmentComponent implements OnInit {
 
   loadAppointmentData() {
     if (this.appointmentId) {
-      this.http.get(`http://127.0.0.1:8000/api/citas/${this.appointmentId}`).subscribe(
+      this.http.get(`http://10.111.22.134:8000/api/citas/${this.appointmentId}`).subscribe(
         (response: any) => {
           // Convierte la fecha recibida a un formato 'YYYY-MM-DD'
           this.appointment = {
@@ -72,7 +72,7 @@ export class EditAppointmentComponent implements OnInit {
 
   deleteAppointment() {
     if (this.appointmentId) {
-      this.http.delete(`http://127.0.0.1:8000/api/citas/${this.appointmentId}`).subscribe(
+      this.http.delete(`http://10.111.22.134:8000/api/citas/${this.appointmentId}`).subscribe(
         (response) => {
           console.log('Cita eliminada exitosamente', response);
           this.router.navigate([this.routes.appointmentList]); // Redirigir a la lista de citas
@@ -101,7 +101,7 @@ export class EditAppointmentComponent implements OnInit {
         Fecha_Cita: formattedDate
       };
   
-      this.http.put(`http://127.0.0.1:8000/api/citas/${this.appointmentId}`, updatedAppointment).subscribe(
+      this.http.put(`http://10.111.22.134:8000/api/citas/${this.appointmentId}`, updatedAppointment).subscribe(
         (response) => {
           console.log('Cita actualizada exitosamente', response);
           this.router.navigate([this.routes.appointmentList]); // Redirigir a la lista de citas

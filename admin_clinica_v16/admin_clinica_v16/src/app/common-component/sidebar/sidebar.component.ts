@@ -48,7 +48,7 @@ export class SidebarComponent implements OnInit {
       this.sidebarData = this.sidebarData.map((sideBarItem) => {
         const filteredMenu = sideBarItem.menu.filter((menuItem) => {
           // Filtra fuera Dashboard y Doctores para el rol '1'
-          return menuItem.menuValue !== 'Dashboard' && menuItem.menuValue !== 'Doctores';
+          return menuItem.menuValue !== 'Doctores';
         });
 
         return {

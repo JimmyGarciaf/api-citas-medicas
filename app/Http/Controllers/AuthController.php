@@ -19,6 +19,7 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8',
+            'idrole' => 'required|string|max:1'
         ]);
  
         if($validator->fails()){
@@ -29,6 +30,7 @@ class AuthController extends Controller
         $user->name = request()->name;
         $user->email = request()->email;
         $user->password = bcrypt(request()->password);
+        $user->idrole = request()->idrole; // Asigna el rol al usuario
         $user->save();
  
         return response()->json($user, 201);

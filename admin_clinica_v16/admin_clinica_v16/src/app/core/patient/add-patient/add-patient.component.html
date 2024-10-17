@@ -1,14 +1,13 @@
 <div class="page-wrapper">
     <div class="content">
-    
         <!-- Page Header -->
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a [routerLink]="routes.patientsList">Pacientes </a></li>
+                        <li class="breadcrumb-item"><a [routerLink]="routes.patientsList">Pacientes</a></li>
                         <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Agregar Pacientes </li>
+                        <li class="breadcrumb-item active">Agregar Paciente</li>
                     </ul>
                 </div>
             </div>
@@ -16,70 +15,64 @@
         <!-- /Page Header -->
         <div class="row">
             <div class="col-sm-12">
-            
                 <div class="card">
                     <div class="card-body">
-                        <form>
+                        <form (ngSubmit)="onSubmit()">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-heading">
-                                        <h4>Detalle Pacientes</h4>
+                                        <h4>Detalle Paciente</h4>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">  
                                     <div class="form-group local-forms">
-                                        <label for="name">Nombre Completo <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="" >
+                                        <label for="identidad">Identidad <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" [(ngModel)]="patients.idPacientes" name="Identidad" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-6">  
+                                    <div class="form-group local-forms">
+                                        <label for="nombreCompleto">Nombre Completo <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" [(ngModel)]="patients.Nombre_Paciente" name="Nombre_Completo" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-forms">
-                                         <label  for="mobile" >Celular <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="" >
+                                         <label for="puesto">Departamento <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" [(ngModel)]="patients.Departamento" name="Puesto" required>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="form-group local-forms">
-                                        <label for="email" >Correo <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="email" placeholder="" >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-6">
+                                <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group select-gender">
-                                        <label for="Gender" class="gen-label">Genero<span class="login-danger">*</span></label>
+                                        <label for="gender" class="gen-label">Género <span class="login-danger">*</span></label>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input">Hombre
+                                                <input type="radio" [(ngModel)]="patients.Genero" name="Genero" value="Hombre" class="form-check-input" required> Hombre
                                             </label>
                                         </div>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input">Mujer
+                                                <input type="radio" [(ngModel)]="patients.Genero" name="Genero" value="Mujer" class="form-check-input" required> Mujer
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
-                                         <label  for="department">Departamento <span class="login-danger">*</span></label>
-                                        
-                                        <mat-select [(ngModel)]="selectedValue" [ngModelOptions]="{standalone: true}" class="form-control select"  placeholder="Seleccionar Departamento">
-                                            <mat-option *ngFor="let data of selectedList1" [value]="data.value">
-                                            {{data.value}}
-                                            </mat-option>
-                                        </mat-select>
+                                        <label for="celular">Celular <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" [(ngModel)]="patients.Celular" name="Celular" required>
                                     </div>
                                 </div>
-                                <!--<div class="col-12 col-sm-12">
+                                <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
-                                        <label for="Start">Start Biography  <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" rows="3" cols="30"></textarea>
+                                        <label for="correo">Correo <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="email" [(ngModel)]="patients.Correo" name="Correo" required>
+                                    </div>
                                 </div>
-                                <</div>-->
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
-                                        <button type="submit" class="btn btn-primary submit-form me-2">Enviar</button>
-                                        <button type="submit" class="btn btn-primary cancel-form">Cancelar</button>
+                                        <button type="submit" class="btn btn-primary submit-form me-2">Crear Paciente</button>
+                                        <button type="button" class="btn btn-primary cancel-form" (click)="onCancel()">Cancelar</button>
                                     </div>
                                 </div>
                             </div>
@@ -90,4 +83,3 @@
         </div>
     </div>
 </div>
- 

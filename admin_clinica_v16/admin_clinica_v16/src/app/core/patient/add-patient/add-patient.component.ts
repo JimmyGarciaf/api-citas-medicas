@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { routes } from 'src/app/shared/routes/routes';
-interface data {
-  value: string ;
-}
+import { environment } from 'src/environments/environment.development';
+
 @Component({
   selector: 'app-add-patient',
   templateUrl: './add-patient.component.html',
@@ -10,27 +11,36 @@ interface data {
 })
 export class AddPatientComponent {
   public routes = routes;
-  public selectedValue! : string  ;
-  selectedList1: data[] = [
-    {value: 'Select  Department'},
-    {value: 'Orthopedics'},
-    {value: 'Radiology'},
-    {value: 'Dentist'},
-  ];
-  selectedList2: data[] = [
-    {value: 'Select City'},
-    {value: 'Alaska'},
-    {value: 'Los Angeles'},
-  ];
-  selectedList3: data[] = [
-    {value: 'Select Country'},
-    {value: 'Usa'},
-    {value: 'Uk'},
-    {value: 'Italy'},
-  ];
-  selectedList4: data[] = [
-    {value: 'Select State'},
-    {value: 'Alaska'},
-    {value: 'California'},
-  ];
+
+  // Variables para los datos del formulario
+  public patients = {
+    idPacientes: '',
+    Nombre_Paciente: '',
+    Departamento: '',
+    Celular: '',
+    Correo: '',
+    Genero: ''
+  };
+
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {}
+
+  onSubmit() {
+    this.http.post(environment.URL_SERVICIOS+environment.GET_PACIENTES, this.patients).subscribe(
+      (response) => {
+        console.log('Paciente agregado exitosamente', response);
+        this.router.navigate([this.routes.patientsList]); // Redirigir a la lista de pacientes
+      },
+      (error) => {
+        console.error('Error al agregar paciente', error);
+      }
+    );
+  }
+
+  onCancel() {
+    // Redirige a la lista de pacientes
+    this.router.navigate([this.routes.patientsList]);
+  }
 }

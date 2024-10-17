@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { routes } from 'src/app/shared/routes/routes';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-edit-doctor',
@@ -41,7 +42,7 @@ export class EditDoctorComponent implements OnInit {
 
   loadDoctorData() {
     if (this.doctorId) {
-      this.http.get(`http://127.0.0.1:8000/api/doctores/${this.doctorId}`).subscribe(
+      this.http.get(environment.URL_SERVICIOS+environment.GET_DOCTORES + this.doctorId).subscribe(
         (response: any) => {
           this.doctor = response;
         },
@@ -54,7 +55,7 @@ export class EditDoctorComponent implements OnInit {
 
   deleteDoctor() {
     if (this.doctorId) {
-      this.http.delete(`http://127.0.0.1:8000/api/doctores/${this.doctorId}`).subscribe(
+      this.http.delete(environment.URL_SERVICIOS+environment.GET_DOCTORES +this.doctorId).subscribe(
         (response) => {
           console.log('Doctor eliminado exitosamente', response);
           this.router.navigate([this.routes.doctorsList]); // Redirigir a la lista de doctores
@@ -73,7 +74,7 @@ export class EditDoctorComponent implements OnInit {
 
   onSubmit() {
     if (this.doctorId) {
-      this.http.put(`http://127.0.0.1:8000/api/doctores/${this.doctorId}`, this.doctor).subscribe(
+      this.http.put(environment.URL_SERVICIOS+ environment.GET_DOCTORES+ this.doctorId, this.doctor).subscribe(
         (response) => {
           console.log('Doctor actualizado exitosamente', response);
           this.router.navigate([this.routes.doctorsList]); // Redirigir a la lista de doctores

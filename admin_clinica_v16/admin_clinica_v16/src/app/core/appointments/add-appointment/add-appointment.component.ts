@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { routes } from 'src/app/shared/routes/routes';
 import { DatePipe } from '@angular/common';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-add-appointment',
@@ -46,7 +47,7 @@ export class AddAppointmentComponent {
     const identity = input.value;
 
     if (identity) {
-      this.http.get(`http://127.0.0.1:8000/api/pacientes/${identity}`).subscribe(
+      this.http.get(environment.URL_SERVICIOS+environment.GET_PACIENTES+ identity).subscribe(
         (response: any) => {
           this.patientData = response;
           this.appointment.idPacientes = this.patientData.idPacientes; // Asigna el id del paciente a la cita
@@ -65,7 +66,7 @@ export class AddAppointmentComponent {
       this.appointment.idPacientes = ''; // Limpia el id del paciente
     }
   }
-
+ 
   onSubmit() {
     const formattedDate = this.datePipe.transform(this.appointment.Fecha_Cita, 'yyyy-MM-dd');
     const appointmentData = {
@@ -78,7 +79,7 @@ export class AddAppointmentComponent {
       Correo: this.patientData.Correo
     };
 
-    this.http.post('http://127.0.0.1:8000/api/citas', appointmentData).subscribe(
+    this.http.post(environment.URL_SERVICIOS+environment.GET_CITAS, appointmentData).subscribe(
       (response) => {
         console.log('Cita creada exitosamente', response);
         this.router.navigate([this.routes.appointmentList]);

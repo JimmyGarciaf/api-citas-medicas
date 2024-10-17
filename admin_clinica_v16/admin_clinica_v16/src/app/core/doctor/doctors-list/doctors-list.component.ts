@@ -5,6 +5,7 @@ import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from "@angular/material/table";
 import { pageSelection, apiResultFormat, doctorlist } from 'src/app/shared/models/models';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-doctors-list',
@@ -36,9 +37,9 @@ export class DoctorsListComponent implements OnInit {
   ngOnInit(): void {
     this.getDoctors();
   }
-
+ 
   getDoctors(): void {
-    this.http.get('http://127.0.0.1:8000/api/doctores/')
+    this.http.get(environment.URL_SERVICIOS+environment.GET_DOCTORES)
       .subscribe((data: any) => {
         this.doctors = data;
         this.dataSource.data = this.doctors;

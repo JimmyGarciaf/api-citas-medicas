@@ -5,6 +5,7 @@ import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { pageSelection, apiResultFormat, appointmentList } from 'src/app/shared/models/models';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-appointment-list',
@@ -38,7 +39,7 @@ export class AppointmentListComponent implements OnInit {
   }
 
   getAppointments(): void {
-    this.http.get('http://127.0.0.1:8000/api/citas/')
+    this.http.get(environment.URL_SERVICIOS+environment.GET_CITAS)
       .subscribe((data: any) => {
         this.appointments = data;
         this.dataSource.data = this.appointments;

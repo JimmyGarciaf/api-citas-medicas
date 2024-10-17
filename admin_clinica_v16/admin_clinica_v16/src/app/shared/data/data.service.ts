@@ -262,11 +262,11 @@ export class DataService {
               route: routes.patientsList,
               base: routes.patientsList,
             },
-            //{
-            //  menuValue: 'Agregar Pacientes',
-            //  route: routes.addPatient,
-            //  base: routes.addPatient,
-            //},
+            {
+              menuValue: 'Agregar Pacientes',
+              route: routes.addPatient,
+              base: routes.addPatient,
+            },
             //{
             //  menuValue: 'Editar Pacientes',
             //  route: routes.editPatient,
