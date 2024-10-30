@@ -29,9 +29,7 @@ export class AddAppointmentComponent {
   };
 
   selectedList = [
-    { value: 'Dr.Bernardo James' },
-    { value: 'Dr.Andrea Lalema' },
-    { value: 'Dr.William Stephin' }
+    { value: 'Dr.Bernardo James' }
   ];
 
   selectedList2 = [
